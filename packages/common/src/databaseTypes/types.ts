@@ -118,6 +118,7 @@ export type AppSettings = {
   maintenance_end?: string | null;
   maintenance_settings: string;
   maintenance_start?: string | null;
+  telegram_bot_token?: string | null;
   map_enabled?: boolean | null;
   map_settings: string;
   news_area_color?: string | null;
@@ -1512,6 +1513,20 @@ export type MailsFiles = {
   mails_id?: string | Mails | null;
 };
 
+export type TelegramNotifications = {
+  chat_id?: string | null;
+  date_created?: string | null;
+  date_updated?: string | null;
+  disable_notification?: boolean | null;
+  id: string;
+  message?: string | null;
+  message_thread_id?: number | null;
+  parse_mode?: string | null;
+  status?: string | null;
+  user_created?: string | DirectusUsers | null;
+  user_updated?: string | DirectusUsers | null;
+};
+
 export type Markings = {
   alias?: string | null;
   background_color?: string | null;
@@ -1986,6 +2001,7 @@ export type CustomDirectusTypes = {
   profiles_markings: ProfilesMarkings[];
   push_notifications: PushNotifications[];
   report_recipients: ReportRecipients[];
+  telegram_notifications: TelegramNotifications[];
   utilizations_entries: UtilizationsEntries[];
   utilizations_groups: UtilizationsGroups[];
   washingmachines: Washingmachines[];
