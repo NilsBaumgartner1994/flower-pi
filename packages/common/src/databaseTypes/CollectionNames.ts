@@ -61,6 +61,7 @@ export enum CollectionNames {
   POLICIES = 'directus_policies',
   CANTEENS = 'canteens',
   PUSH_NOTIFICATIONS = 'push_notifications',
+  TELEGRAM_NOTIFICATIONS = 'telegram_notifications',
   DEVICES = 'devices',
   FOODOFFERS = 'foodoffers',
   FOODOFFER_CATEGORIES = 'foodoffers_categories',
