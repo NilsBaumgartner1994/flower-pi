@@ -1,0 +1,110 @@
+{
+  "collection": "form_fields",
+  "field": "field_type",
+  "type": "string",
+  "meta": {
+    "collection": "form_fields",
+    "conditions": null,
+    "display": null,
+    "display_options": null,
+    "field": "field_type",
+    "group": "form_settings",
+    "hidden": false,
+    "interface": "select-radio",
+    "note": null,
+    "options": {
+      "choices": [
+        {
+          "text": "String",
+          "value": "value_string-string"
+        },
+        {
+          "text": "Dropdown",
+          "value": "value_string-dropdown"
+        },
+        {
+          "text": "Multiline Text",
+          "value": "value_string-multiline"
+        },
+        {
+          "text": "Number",
+          "value": "value_number-number"
+        },
+        {
+          "text": "Datum mit Uhrzeit",
+          "value": "value_date-date_hh_mm"
+        },
+        {
+          "text": "Datum",
+          "value": "value_date-date"
+        },
+        {
+          "text": "Uhrzeit",
+          "value": "value_date-hh_mm"
+        },
+        {
+          "text": "Zeitstempel",
+          "value": "value_date-timestamp"
+        },
+        {
+          "text": "Adresse",
+          "value": "value_string-address"
+        },
+        {
+          "text": "E-Mail",
+          "value": "value_string-email"
+        },
+        {
+          "text": "Bankverbindung",
+          "value": "value_string-bank_account_number"
+        },
+        {
+          "text": "Checkbox",
+          "value": "value_boolean-checkbox"
+        },
+        {
+          "text": "Dateien",
+          "value": "value_files-files"
+        },
+        {
+          "text": "Bild",
+          "value": "value_image-image"
+        },
+        {
+          "text": "Unterschrift",
+          "value": "value_image-signature"
+        },
+        {
+          "text": "Appartment",
+          "value": "value_custom-reference-apartments"
+        }
+      ]
+    },
+    "readonly": false,
+    "required": false,
+    "sort": 2,
+    "special": null,
+    "translations": null,
+    "validation": null,
+    "validation_message": null,
+    "width": "full"
+  },
+  "schema": {
+    "name": "field_type",
+    "table": "form_fields",
+    "data_type": "character varying",
+    "default_value": null,
+    "max_length": 255,
+    "numeric_precision": null,
+    "numeric_scale": null,
+    "is_nullable": true,
+    "is_unique": false,
+    "is_indexed": false,
+    "is_primary_key": false,
+    "is_generated": false,
+    "generation_expression": null,
+    "has_auto_increment": false,
+    "foreign_key_table": null,
+    "foreign_key_column": null
+  }
+}

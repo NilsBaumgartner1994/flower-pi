@@ -1,0 +1,35 @@
+{
+  "collection": "form_submissions",
+  "meta": {
+    "accountability": "all",
+    "archive_app_filter": true,
+    "archive_field": "status",
+    "archive_value": "archived",
+    "collapse": "open",
+    "collection": "form_submissions",
+    "color": null,
+    "display_template": null,
+    "group": "forms",
+    "hidden": false,
+    "icon": null,
+    "item_duplication_fields": null,
+    "note": null,
+    "preview_url": null,
+    "singleton": false,
+    "sort": 6,
+    "sort_field": "sort",
+    "translations": [
+      {
+        "language": "de-DE",
+        "plural": "Formulareinsendungen",
+        "singular": "Formulareinsendung",
+        "translation": "Formulareinsendungen"
+      }
+    ],
+    "unarchive_value": "draft",
+    "versioning": false
+  },
+  "schema": {
+    "name": "form_submissions"
+  }
+}

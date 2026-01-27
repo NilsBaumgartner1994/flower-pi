@@ -1,0 +1,25 @@
+{
+  "collection": "form_answers_files",
+  "field": "form_answers_id",
+  "related_collection": "form_answers",
+  "meta": {
+    "junction_field": "directus_files_id",
+    "many_collection": "form_answers_files",
+    "many_field": "form_answers_id",
+    "one_allowed_collections": null,
+    "one_collection": "form_answers",
+    "one_collection_field": null,
+    "one_deselect_action": "delete",
+    "one_field": "value_files",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "form_answers_files",
+    "column": "form_answers_id",
+    "foreign_key_table": "form_answers",
+    "foreign_key_column": "id",
+    "constraint_name": "form_answers_files_form_answers_id_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}

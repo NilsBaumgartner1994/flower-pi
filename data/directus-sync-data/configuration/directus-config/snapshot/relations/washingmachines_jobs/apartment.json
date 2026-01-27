@@ -1,0 +1,25 @@
+{
+  "collection": "washingmachines_jobs",
+  "field": "apartment",
+  "related_collection": "apartments",
+  "meta": {
+    "junction_field": null,
+    "many_collection": "washingmachines_jobs",
+    "many_field": "apartment",
+    "one_allowed_collections": null,
+    "one_collection": "apartments",
+    "one_collection_field": null,
+    "one_deselect_action": "nullify",
+    "one_field": null,
+    "sort_field": null
+  },
+  "schema": {
+    "table": "washingmachines_jobs",
+    "column": "apartment",
+    "foreign_key_table": "apartments",
+    "foreign_key_column": "id",
+    "constraint_name": "washingmachines_jobs_apartment_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "SET NULL"
+  }
+}

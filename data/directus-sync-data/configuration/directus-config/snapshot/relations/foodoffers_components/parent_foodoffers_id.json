@@ -1,0 +1,25 @@
+{
+  "collection": "foodoffers_components",
+  "field": "parent_foodoffers_id",
+  "related_collection": "foodoffers",
+  "meta": {
+    "junction_field": "component_foodoffers_id",
+    "many_collection": "foodoffers_components",
+    "many_field": "parent_foodoffers_id",
+    "one_allowed_collections": null,
+    "one_collection": "foodoffers",
+    "one_collection_field": null,
+    "one_deselect_action": "delete",
+    "one_field": "foodoffer_components",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "foodoffers_components",
+    "column": "parent_foodoffers_id",
+    "foreign_key_table": "foodoffers",
+    "foreign_key_column": "id",
+    "constraint_name": "foodoffers_components_parent_foodoffers_id_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "collection": "markings_groups",
+  "meta": {
+    "accountability": "all",
+    "archive_app_filter": true,
+    "archive_field": "status",
+    "archive_value": "archived",
+    "collapse": "open",
+    "collection": "markings_groups",
+    "color": null,
+    "display_template": null,
+    "group": "markings",
+    "hidden": false,
+    "icon": null,
+    "item_duplication_fields": null,
+    "note": null,
+    "preview_url": null,
+    "singleton": false,
+    "sort": 1,
+    "sort_field": "sort",
+    "translations": [
+      {
+        "language": "de-DE",
+        "plural": "Kennzeichnungs Gruppen",
+        "singular": "Kennzeichnungs Gruppe",
+        "translation": "Kennzeichnungs Gruppen"
+      }
+    ],
+    "unarchive_value": "draft",
+    "versioning": false
+  },
+  "schema": {
+    "name": "markings_groups"
+  }
+}

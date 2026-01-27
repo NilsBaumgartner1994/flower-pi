@@ -1,0 +1,35 @@
+{
+  "collection": "cashregisters_transactions",
+  "meta": {
+    "accountability": "all",
+    "archive_app_filter": true,
+    "archive_field": "status",
+    "archive_value": "archived",
+    "collapse": "open",
+    "collection": "cashregisters_transactions",
+    "color": null,
+    "display_template": null,
+    "group": "cashregisters",
+    "hidden": false,
+    "icon": null,
+    "item_duplication_fields": null,
+    "note": null,
+    "preview_url": null,
+    "singleton": false,
+    "sort": 1,
+    "sort_field": "sort",
+    "translations": [
+      {
+        "language": "de-DE",
+        "plural": "Kassen Transaktion",
+        "singular": "Kassen Transaktion",
+        "translation": "Kassen Transaktion"
+      }
+    ],
+    "unarchive_value": "draft",
+    "versioning": false
+  },
+  "schema": {
+    "name": "cashregisters_transactions"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "collection": "utilizations_entries",
+  "field": "utilization_group",
+  "related_collection": "utilizations_groups",
+  "meta": {
+    "junction_field": null,
+    "many_collection": "utilizations_entries",
+    "many_field": "utilization_group",
+    "one_allowed_collections": null,
+    "one_collection": "utilizations_groups",
+    "one_collection_field": null,
+    "one_deselect_action": "delete",
+    "one_field": "utilization_entries",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "utilizations_entries",
+    "column": "utilization_group",
+    "foreign_key_table": "utilizations_groups",
+    "foreign_key_column": "id",
+    "constraint_name": "utilizations_entries_utilization_group_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}

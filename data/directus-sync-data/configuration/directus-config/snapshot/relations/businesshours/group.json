@@ -1,0 +1,25 @@
+{
+  "collection": "businesshours",
+  "field": "group",
+  "related_collection": "businesshours_groups",
+  "meta": {
+    "junction_field": null,
+    "many_collection": "businesshours",
+    "many_field": "group",
+    "one_allowed_collections": null,
+    "one_collection": "businesshours_groups",
+    "one_collection_field": null,
+    "one_deselect_action": "nullify",
+    "one_field": null,
+    "sort_field": null
+  },
+  "schema": {
+    "table": "businesshours",
+    "column": "group",
+    "foreign_key_table": "businesshours_groups",
+    "foreign_key_column": "id",
+    "constraint_name": "businesshours_group_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "SET NULL"
+  }
+}

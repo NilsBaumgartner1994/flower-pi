@@ -1,0 +1,80 @@
+services:
+  prepare-data:
+    image: debian:bookworm-slim
+    volumes:
+      - ./preparePermission.sh:/preparePermission.sh
+      - ./data:/data
+      - .env:/.env
+    working_dir: /
+    entrypoint: ["/bin/sh", "-c", "chmod +x ./preparePermission.sh && ./preparePermission.sh"]
+
+  traefik:
+    env_file:
+      - .env
+    extends:
+      service: traefik
+      file: apps/proxy/docker-compose.yaml
+
+  rocket-meals-directus:
+    env_file:
+      - .env
+    depends_on:
+      prepare-data:
+        condition: service_completed_successfully
+      rocket-meals-database:
+        condition: service_healthy
+      rocket-meals-cache:
+        condition: service_started
+    extends:
+      service: rocket-meals-directus
+      file: apps/backend/docker-compose.yaml
+
+  rocket-meals-database:
+    env_file:
+      - .env
+    depends_on:
+      prepare-data:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U directus"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    extends:
+      service: rocket-meals-database
+      file: apps/backend/docker-compose.yaml
+
+  rocket-meals-database-sync:
+    env_file:
+      - .env
+    depends_on:
+      prepare-data:
+        condition: service_completed_successfully
+    extends:
+      service: rocket-meals-database-sync
+      file: apps/backend/docker-compose.yaml
+
+  rocket-meals-database-backup:
+    env_file:
+      - .env
+    depends_on:
+      prepare-data:
+        condition: service_completed_successfully
+    extends:
+      service: rocket-meals-database-backup
+      file: apps/backend/docker-compose.yaml
+
+  rocket-meals-cache:
+    env_file:
+      - .env
+    extends:
+      service: rocket-meals-cache
+      file: apps/backend/docker-compose.yaml
+    networks:
+      - directus_network
+
+networks:
+  directus_network: {}
+  traefik:
+    driver: bridge
+    name: traefik

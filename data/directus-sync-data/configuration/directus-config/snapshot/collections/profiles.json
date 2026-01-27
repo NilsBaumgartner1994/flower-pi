@@ -1,0 +1,35 @@
+{
+  "collection": "profiles",
+  "meta": {
+    "accountability": "all",
+    "archive_app_filter": true,
+    "archive_field": "status",
+    "archive_value": "archived",
+    "collapse": "open",
+    "collection": "profiles",
+    "color": null,
+    "display_template": null,
+    "group": null,
+    "hidden": false,
+    "icon": null,
+    "item_duplication_fields": null,
+    "note": null,
+    "preview_url": null,
+    "singleton": false,
+    "sort": 11,
+    "sort_field": "sort",
+    "translations": [
+      {
+        "language": "de-DE",
+        "plural": "Nutzer Profile",
+        "singular": "Nutzer Profil",
+        "translation": "Nutzer Profile"
+      }
+    ],
+    "unarchive_value": "draft",
+    "versioning": false
+  },
+  "schema": {
+    "name": "profiles"
+  }
+}

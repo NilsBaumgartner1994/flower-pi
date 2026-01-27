@@ -1,0 +1,35 @@
+{
+  "collection": "washingmachines",
+  "meta": {
+    "accountability": "all",
+    "archive_app_filter": true,
+    "archive_field": "status",
+    "archive_value": "archived",
+    "collapse": "open",
+    "collection": "washingmachines",
+    "color": null,
+    "display_template": null,
+    "group": "apartments",
+    "hidden": false,
+    "icon": null,
+    "item_duplication_fields": null,
+    "note": null,
+    "preview_url": null,
+    "singleton": false,
+    "sort": 1,
+    "sort_field": "sort",
+    "translations": [
+      {
+        "language": "de-DE",
+        "plural": "Waschmaschinen",
+        "singular": "Waschmaschine",
+        "translation": "Waschmaschinen"
+      }
+    ],
+    "unarchive_value": "draft",
+    "versioning": false
+  },
+  "schema": {
+    "name": "washingmachines"
+  }
+}

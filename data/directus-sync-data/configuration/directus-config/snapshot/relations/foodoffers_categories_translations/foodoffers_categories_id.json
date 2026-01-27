@@ -1,0 +1,25 @@
+{
+  "collection": "foodoffers_categories_translations",
+  "field": "foodoffers_categories_id",
+  "related_collection": "foodoffers_categories",
+  "meta": {
+    "junction_field": "languages_code",
+    "many_collection": "foodoffers_categories_translations",
+    "many_field": "foodoffers_categories_id",
+    "one_allowed_collections": null,
+    "one_collection": "foodoffers_categories",
+    "one_collection_field": null,
+    "one_deselect_action": "delete",
+    "one_field": "translations",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "foodoffers_categories_translations",
+    "column": "foodoffers_categories_id",
+    "foreign_key_table": "foodoffers_categories",
+    "foreign_key_column": "id",
+    "constraint_name": "foodoffers_categories_translations_foodoff__28827433_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}

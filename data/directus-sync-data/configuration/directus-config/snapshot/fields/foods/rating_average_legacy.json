@@ -1,0 +1,45 @@
+{
+  "collection": "foods",
+  "field": "rating_average_legacy",
+  "type": "float",
+  "meta": {
+    "collection": "foods",
+    "conditions": null,
+    "display": "rating",
+    "display_options": {
+      "simple": true
+    },
+    "field": "rating_average_legacy",
+    "group": "rating_legacy_settings",
+    "hidden": false,
+    "interface": "input",
+    "note": null,
+    "options": null,
+    "readonly": false,
+    "required": false,
+    "sort": 1,
+    "special": null,
+    "translations": null,
+    "validation": null,
+    "validation_message": null,
+    "width": "half"
+  },
+  "schema": {
+    "name": "rating_average_legacy",
+    "table": "foods",
+    "data_type": "real",
+    "default_value": null,
+    "max_length": null,
+    "numeric_precision": 24,
+    "numeric_scale": null,
+    "is_nullable": true,
+    "is_unique": false,
+    "is_indexed": false,
+    "is_primary_key": false,
+    "is_generated": false,
+    "generation_expression": null,
+    "has_auto_increment": false,
+    "foreign_key_table": null,
+    "foreign_key_column": null
+  }
+}

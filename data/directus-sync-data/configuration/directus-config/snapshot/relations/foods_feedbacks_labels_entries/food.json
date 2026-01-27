@@ -1,0 +1,25 @@
+{
+  "collection": "foods_feedbacks_labels_entries",
+  "field": "food",
+  "related_collection": "foods",
+  "meta": {
+    "junction_field": null,
+    "many_collection": "foods_feedbacks_labels_entries",
+    "many_field": "food",
+    "one_allowed_collections": null,
+    "one_collection": "foods",
+    "one_collection_field": null,
+    "one_deselect_action": "nullify",
+    "one_field": null,
+    "sort_field": null
+  },
+  "schema": {
+    "table": "foods_feedbacks_labels_entries",
+    "column": "food",
+    "foreign_key_table": "foods",
+    "foreign_key_column": "id",
+    "constraint_name": "foods_feedbacks_labels_entries_food_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}

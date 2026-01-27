@@ -1,0 +1,25 @@
+{
+  "collection": "form_submissions",
+  "field": "form",
+  "related_collection": "forms",
+  "meta": {
+    "junction_field": null,
+    "many_collection": "form_submissions",
+    "many_field": "form",
+    "one_allowed_collections": null,
+    "one_collection": "forms",
+    "one_collection_field": null,
+    "one_deselect_action": "delete",
+    "one_field": "form_submissions",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "form_submissions",
+    "column": "form",
+    "foreign_key_table": "forms",
+    "foreign_key_column": "id",
+    "constraint_name": "form_submissions_form_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "NO ACTION"
+  }
+}

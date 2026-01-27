@@ -1,0 +1,35 @@
+{
+  "collection": "form_fields",
+  "meta": {
+    "accountability": "all",
+    "archive_app_filter": true,
+    "archive_field": "status",
+    "archive_value": "archived",
+    "collapse": "open",
+    "collection": "form_fields",
+    "color": null,
+    "display_template": "{{alias}} ({{form.alias}})",
+    "group": "forms",
+    "hidden": false,
+    "icon": null,
+    "item_duplication_fields": null,
+    "note": null,
+    "preview_url": null,
+    "singleton": false,
+    "sort": 5,
+    "sort_field": "sort",
+    "translations": [
+      {
+        "language": "de-DE",
+        "plural": "Formularfelder",
+        "singular": "Formularfeld",
+        "translation": "Formularfelder"
+      }
+    ],
+    "unarchive_value": "draft",
+    "versioning": false
+  },
+  "schema": {
+    "name": "form_fields"
+  }
+}

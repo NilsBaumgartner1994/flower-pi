@@ -1,0 +1,43 @@
+{
+  "collection": "auto_translation_settings",
+  "field": "limit",
+  "type": "integer",
+  "meta": {
+    "collection": "auto_translation_settings",
+    "conditions": null,
+    "display": null,
+    "display_options": null,
+    "field": "limit",
+    "group": "usage",
+    "hidden": false,
+    "interface": "input",
+    "note": null,
+    "options": null,
+    "readonly": true,
+    "required": false,
+    "sort": 3,
+    "special": null,
+    "translations": null,
+    "validation": null,
+    "validation_message": null,
+    "width": "half"
+  },
+  "schema": {
+    "name": "limit",
+    "table": "auto_translation_settings",
+    "data_type": "integer",
+    "default_value": 500000,
+    "max_length": null,
+    "numeric_precision": 32,
+    "numeric_scale": 0,
+    "is_nullable": true,
+    "is_unique": false,
+    "is_indexed": false,
+    "is_primary_key": false,
+    "is_generated": false,
+    "generation_expression": null,
+    "has_auto_increment": false,
+    "foreign_key_table": null,
+    "foreign_key_column": null
+  }
+}

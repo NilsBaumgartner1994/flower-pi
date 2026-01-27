@@ -1,0 +1,25 @@
+{
+  "collection": "mails_files",
+  "field": "mails_id",
+  "related_collection": "mails",
+  "meta": {
+    "junction_field": "directus_files_id",
+    "many_collection": "mails_files",
+    "many_field": "mails_id",
+    "one_allowed_collections": null,
+    "one_collection": "mails",
+    "one_collection_field": null,
+    "one_deselect_action": "delete",
+    "one_field": "attachments",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "mails_files",
+    "column": "mails_id",
+    "foreign_key_table": "mails",
+    "foreign_key_column": "id",
+    "constraint_name": "mails_files_mails_id_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}

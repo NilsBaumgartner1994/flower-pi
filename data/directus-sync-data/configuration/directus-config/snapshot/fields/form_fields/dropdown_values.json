@@ -1,0 +1,59 @@
+{
+  "collection": "form_fields",
+  "field": "dropdown_values",
+  "type": "json",
+  "meta": {
+    "collection": "form_fields",
+    "conditions": [
+      {
+        "hidden": true,
+        "name": "visibility_hidden",
+        "rule": {
+          "_and": [
+            {
+              "field_type": {
+                "_neq": "value_string-dropdown"
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "display": null,
+    "display_options": null,
+    "field": "dropdown_values",
+    "group": "form_settings",
+    "hidden": false,
+    "interface": "tags",
+    "note": null,
+    "options": null,
+    "readonly": false,
+    "required": false,
+    "sort": 3,
+    "special": [
+      "cast-json"
+    ],
+    "translations": null,
+    "validation": null,
+    "validation_message": null,
+    "width": "full"
+  },
+  "schema": {
+    "name": "dropdown_values",
+    "table": "form_fields",
+    "data_type": "json",
+    "default_value": null,
+    "max_length": null,
+    "numeric_precision": null,
+    "numeric_scale": null,
+    "is_nullable": true,
+    "is_unique": false,
+    "is_indexed": false,
+    "is_primary_key": false,
+    "is_generated": false,
+    "generation_expression": null,
+    "has_auto_increment": false,
+    "foreign_key_table": null,
+    "foreign_key_column": null
+  }
+}

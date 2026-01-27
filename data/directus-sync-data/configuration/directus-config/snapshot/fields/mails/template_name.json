@@ -1,0 +1,59 @@
+{
+  "collection": "mails",
+  "field": "template_name",
+  "type": "string",
+  "meta": {
+    "collection": "mails",
+    "conditions": null,
+    "display": null,
+    "display_options": null,
+    "field": "template_name",
+    "group": "template_settings",
+    "hidden": false,
+    "interface": "select-radio",
+    "note": null,
+    "options": {
+      "allowOther": true,
+      "choices": [
+        {
+          "text": "app-feedbacks",
+          "value": "app-feedbacks"
+        },
+        {
+          "text": "canteen-food-feedback-report",
+          "value": "canteen-food-feedback-report"
+        },
+        {
+          "text": "base-german-markdown-content",
+          "value": "base-german-markdown-content"
+        }
+      ]
+    },
+    "readonly": false,
+    "required": false,
+    "sort": 1,
+    "special": null,
+    "translations": null,
+    "validation": null,
+    "validation_message": null,
+    "width": "full"
+  },
+  "schema": {
+    "name": "template_name",
+    "table": "mails",
+    "data_type": "character varying",
+    "default_value": null,
+    "max_length": 255,
+    "numeric_precision": null,
+    "numeric_scale": null,
+    "is_nullable": true,
+    "is_unique": false,
+    "is_indexed": false,
+    "is_primary_key": false,
+    "is_generated": false,
+    "generation_expression": null,
+    "has_auto_increment": false,
+    "foreign_key_table": null,
+    "foreign_key_column": null
+  }
+}

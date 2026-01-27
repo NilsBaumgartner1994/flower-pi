@@ -1,0 +1,35 @@
+{
+  "collection": "form_extracts",
+  "meta": {
+    "accountability": "all",
+    "archive_app_filter": true,
+    "archive_field": "status",
+    "archive_value": "archived",
+    "collapse": "open",
+    "collection": "form_extracts",
+    "color": null,
+    "display_template": null,
+    "group": "forms",
+    "hidden": false,
+    "icon": null,
+    "item_duplication_fields": null,
+    "note": null,
+    "preview_url": null,
+    "singleton": false,
+    "sort": 2,
+    "sort_field": "sort",
+    "translations": [
+      {
+        "language": "de-DE",
+        "plural": "Formularauszüge",
+        "singular": "Formularauszug",
+        "translation": "Formularauszüge"
+      }
+    ],
+    "unarchive_value": "draft",
+    "versioning": false
+  },
+  "schema": {
+    "name": "form_extracts"
+  }
+}

@@ -1,0 +1,38 @@
+name: "🚀 CI"
+
+on:
+  push:
+    branches: [main, master, dev]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check-repository:
+    name: "🔍 Check Repository"
+    runs-on: ubuntu-latest
+    if: github.event_name != 'push' || !contains(github.event.head_commit.message, '[skip ci]')
+    steps:
+      - name: "🔄 Checkout Repository"
+        uses: actions/checkout@v4
+      - name: "🔍 Check Repository Type"
+        id: check
+        uses: ./.github/actions/check-repository
+
+
+  backend-directus:
+    name: "🔨 Directus Backend Build"
+    runs-on: ubuntu-latest
+    needs: [check-repository]
+    steps:
+      - name: "🏗 Setup repo"
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+      - name: "🚀 Build backend"
+        uses: ./.github/actions/backend-build
+        with:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}

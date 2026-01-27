@@ -1,0 +1,25 @@
+{
+  "collection": "app_settings_balance_translations",
+  "field": "app_settings_id",
+  "related_collection": "app_settings",
+  "meta": {
+    "junction_field": "languages_code",
+    "many_collection": "app_settings_balance_translations",
+    "many_field": "app_settings_id",
+    "one_allowed_collections": null,
+    "one_collection": "app_settings",
+    "one_collection_field": null,
+    "one_deselect_action": "delete",
+    "one_field": "balance_translations",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "app_settings_balance_translations",
+    "column": "app_settings_id",
+    "foreign_key_table": "app_settings",
+    "foreign_key_column": "id",
+    "constraint_name": "app_settings_balance_translations_app_settings_id_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}

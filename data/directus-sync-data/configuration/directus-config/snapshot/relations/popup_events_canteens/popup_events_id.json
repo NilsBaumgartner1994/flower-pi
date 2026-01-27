@@ -1,0 +1,25 @@
+{
+  "collection": "popup_events_canteens",
+  "field": "popup_events_id",
+  "related_collection": "popup_events",
+  "meta": {
+    "junction_field": "canteens_id",
+    "many_collection": "popup_events_canteens",
+    "many_field": "popup_events_id",
+    "one_allowed_collections": null,
+    "one_collection": "popup_events",
+    "one_collection_field": null,
+    "one_deselect_action": "delete",
+    "one_field": "canteens",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "popup_events_canteens",
+    "column": "popup_events_id",
+    "foreign_key_table": "popup_events",
+    "foreign_key_column": "id",
+    "constraint_name": "popup_events_canteens_popup_events_id_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}

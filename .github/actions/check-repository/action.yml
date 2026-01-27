@@ -1,0 +1,33 @@
+name: 'Check Repository Type'
+description: 'Checks if the current repository is the upstream NilsBaumgartner1994/flower-pi repository'
+outputs:
+  is-upstream:
+    description: 'True if this is the upstream NilsBaumgartner1994/flower-pi repository'
+    value: ${{ steps.check.outputs.is-upstream }}
+  is-fork:
+    description: 'True if this is a fork of NilsBaumgartner1994/flower-pi'
+    value: ${{ steps.check.outputs.is-fork }}
+  repository-name:
+    description: 'The full name of the current repository'
+    value: ${{ steps.check.outputs.repository-name }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: 🔍 Check Repository Type
+      id: check
+      shell: bash
+      run: |
+        REPO_FULL_NAME="${{ github.repository }}"
+        echo "Current repository: $REPO_FULL_NAME"
+        echo "repository-name=$REPO_FULL_NAME" >> $GITHUB_OUTPUT
+        
+        if [ "$REPO_FULL_NAME" = "NilsBaumgartner1994/flower-pi" ]; then
+          echo "This is the upstream NilsBaumgartner1994/flower-pi repository."
+          echo "is-upstream=true" >> $GITHUB_OUTPUT
+          echo "is-fork=false" >> $GITHUB_OUTPUT
+        else
+          echo "This is a fork or different repository."
+          echo "is-upstream=false" >> $GITHUB_OUTPUT
+          echo "is-fork=true" >> $GITHUB_OUTPUT
+        fi

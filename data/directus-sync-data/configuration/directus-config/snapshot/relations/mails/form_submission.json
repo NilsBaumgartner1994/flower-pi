@@ -1,0 +1,25 @@
+{
+  "collection": "mails",
+  "field": "form_submission",
+  "related_collection": "form_submissions",
+  "meta": {
+    "junction_field": null,
+    "many_collection": "mails",
+    "many_field": "form_submission",
+    "one_allowed_collections": null,
+    "one_collection": "form_submissions",
+    "one_collection_field": null,
+    "one_deselect_action": "delete",
+    "one_field": "mails",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "mails",
+    "column": "form_submission",
+    "foreign_key_table": "form_submissions",
+    "foreign_key_column": "id",
+    "constraint_name": "mails_form_submission_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "collection": "canteen_food_feedback_report_schedules_report_recipients",
+  "field": "canteen_food_feedback_report_schedules_id",
+  "related_collection": "canteen_food_feedback_report_schedules",
+  "meta": {
+    "junction_field": "report_recipients_id",
+    "many_collection": "canteen_food_feedback_report_schedules_report_recipients",
+    "many_field": "canteen_food_feedback_report_schedules_id",
+    "one_allowed_collections": null,
+    "one_collection": "canteen_food_feedback_report_schedules",
+    "one_collection_field": null,
+    "one_deselect_action": "nullify",
+    "one_field": "recipients",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "canteen_food_feedback_report_schedules_report_recipients",
+    "column": "canteen_food_feedback_report_schedules_id",
+    "foreign_key_table": "canteen_food_feedback_report_schedules",
+    "foreign_key_column": "id",
+    "constraint_name": "canteen_food_feedback_report_schedules_rep__35d50d56_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "SET NULL"
+  }
+}

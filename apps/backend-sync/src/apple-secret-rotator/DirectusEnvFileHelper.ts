@@ -1,0 +1,1 @@
+export const HOST_ENV_FILE_PATH = "/directus/host.env";

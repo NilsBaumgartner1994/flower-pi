@@ -1,0 +1,69 @@
+services:
+  traefik:
+    image: "traefik:v3.0"
+    container_name: "traefik"
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.traefik.address=:8080"
+      - "--certificatesresolvers.myresolver.acme.email=${CERT_MAIL}"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "./letsencrypt:/letsencrypt"
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=${BASIC_AUTH}"
+      - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+
+      - "traefik.http.routers.traefik.entrypoints=web"
+      - "traefik.http.routers.traefik.rule=Host(`${MYHOST}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
+      - "traefik.http.routers.traefik.middlewares=https-redirect"
+
+      - "traefik.http.routers.traefik-secure.entrypoints=websecure"
+      - "traefik.http.routers.traefik-secure.rule=Host(`${MYHOST}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=${RESOLVER}"
+
+      #- "traefik.http.services.traefik.loadbalancer.server.port=8080"
+
+# If you want to add a ping service to check if traefik is working, please also add in the root docker-compose.yaml file the traefik-ping service
+#  traefik-ping:
+#    image: "jwilder/whoami"
+#    container_name: "traefik-ping"
+#    networks:
+#      - traefik
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.docker.network=traefik"
+#      - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
+#      #- "traefik.http.middlewares.strip-traefik-ping.stripPrefix.prefixes=/subpath" # If we have a subpath
+#
+#      - "traefik.http.routers.traefik-ping.entrypoints=web"
+#      - "traefik.http.routers.traefik-ping.rule=Host(`${MYHOST}`) && PathPrefix(`/ping`)" # If we have a subpath use PathPrefix(`/subpath/ping`)
+#      - "traefik.http.routers.traefik-ping.middlewares=https-redirect"
+#
+#      - "traefik.http.routers.traefik-ping-secure.entrypoints=websecure"
+#      - "traefik.http.routers.traefik-ping-secure.rule=Host(`${MYHOST}`) && PathPrefix(`/ping`)" # If we have a subpath use PathPrefix(`/subpath/ping`)
+#      #- "traefik.http.routers.traefik-ping-secure.middlewares=strip-traefik-ping" # If we have a subpath
+#      - "traefik.http.routers.traefik-ping-secure.tls=true"
+#      - "traefik.http.routers.traefik-ping-secure.tls.certresolver=${RESOLVER}"
+
+networks:
+  traefik:
+    external: true
+    name: traefik

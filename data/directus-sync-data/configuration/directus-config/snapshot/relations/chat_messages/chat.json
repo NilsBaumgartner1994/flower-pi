@@ -1,0 +1,25 @@
+{
+  "collection": "chat_messages",
+  "field": "chat",
+  "related_collection": "chats",
+  "meta": {
+    "junction_field": null,
+    "many_collection": "chat_messages",
+    "many_field": "chat",
+    "one_allowed_collections": null,
+    "one_collection": "chats",
+    "one_collection_field": null,
+    "one_deselect_action": "delete",
+    "one_field": "messages",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "chat_messages",
+    "column": "chat",
+    "foreign_key_table": "chats",
+    "foreign_key_column": "id",
+    "constraint_name": "chat_messages_chat_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}

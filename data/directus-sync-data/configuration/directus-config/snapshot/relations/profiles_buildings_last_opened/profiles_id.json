@@ -1,0 +1,25 @@
+{
+  "collection": "profiles_buildings_last_opened",
+  "field": "profiles_id",
+  "related_collection": "profiles",
+  "meta": {
+    "junction_field": "buildings_id",
+    "many_collection": "profiles_buildings_last_opened",
+    "many_field": "profiles_id",
+    "one_allowed_collections": null,
+    "one_collection": "profiles",
+    "one_collection_field": null,
+    "one_deselect_action": "delete",
+    "one_field": "buildings_last_opened",
+    "sort_field": null
+  },
+  "schema": {
+    "table": "profiles_buildings_last_opened",
+    "column": "profiles_id",
+    "foreign_key_table": "profiles",
+    "foreign_key_column": "id",
+    "constraint_name": "profiles_buildings_last_opened_profiles_id_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}

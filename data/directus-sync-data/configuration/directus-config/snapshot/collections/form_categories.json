@@ -1,0 +1,35 @@
+{
+  "collection": "form_categories",
+  "meta": {
+    "accountability": "all",
+    "archive_app_filter": true,
+    "archive_field": "status",
+    "archive_value": "archived",
+    "collapse": "open",
+    "collection": "form_categories",
+    "color": null,
+    "display_template": null,
+    "group": "forms",
+    "hidden": false,
+    "icon": null,
+    "item_duplication_fields": null,
+    "note": null,
+    "preview_url": null,
+    "singleton": false,
+    "sort": 4,
+    "sort_field": "sort",
+    "translations": [
+      {
+        "language": "de-DE",
+        "plural": "Formularkategorien",
+        "singular": "Formularkategorie",
+        "translation": "Formularkategorien"
+      }
+    ],
+    "unarchive_value": "draft",
+    "versioning": false
+  },
+  "schema": {
+    "name": "form_categories"
+  }
+}

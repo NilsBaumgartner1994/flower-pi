@@ -1,0 +1,25 @@
+{
+  "collection": "canteens_foodservice_hours",
+  "field": "businesshours_id",
+  "related_collection": "businesshours",
+  "meta": {
+    "junction_field": "canteens_id",
+    "many_collection": "canteens_foodservice_hours",
+    "many_field": "businesshours_id",
+    "one_allowed_collections": null,
+    "one_collection": "businesshours",
+    "one_collection_field": null,
+    "one_deselect_action": "nullify",
+    "one_field": null,
+    "sort_field": null
+  },
+  "schema": {
+    "table": "canteens_foodservice_hours",
+    "column": "businesshours_id",
+    "foreign_key_table": "businesshours",
+    "foreign_key_column": "id",
+    "constraint_name": "canteens_foodservice_hours_businesshours_id_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}
