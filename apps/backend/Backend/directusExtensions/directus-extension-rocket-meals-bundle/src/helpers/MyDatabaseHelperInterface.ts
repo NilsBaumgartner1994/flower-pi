@@ -36,7 +36,7 @@ export class MyDatabaseTestableHelper implements MyDatabaseTestableHelperInterfa
   async getServerInfoNoInternetTest(): Promise<ServerInfo> {
     return {
       project: {
-        project_name: 'Rocket Meals',
+        project_name: 'Flower Pi',
         project_color: '#D14610',
         project_logo: undefined,
       },

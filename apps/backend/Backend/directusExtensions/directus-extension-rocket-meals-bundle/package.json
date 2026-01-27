@@ -55,11 +55,6 @@
       },
       {
         "type": "hook",
-        "name": "profile-create-hook",
-        "source": "src/profile-create-hook/index.ts"
-      },
-      {
-        "type": "hook",
         "name": "workflows-runs-sync-hook",
         "source": "src/workflows-runs-hook/index.ts"
       }
