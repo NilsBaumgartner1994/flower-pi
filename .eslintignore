@@ -1,0 +1,7 @@
+node_modules/
+dist/
+build/
+apps/*/dist/
+packages/*/dist/
+**/*.js
+apps/frontend/app/
