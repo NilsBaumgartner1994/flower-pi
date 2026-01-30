@@ -8,6 +8,22 @@ services:
     working_dir: /
     entrypoint: ["/bin/sh", "-c", "chmod +x ./preparePermission.sh && ./preparePermission.sh"]
 
+  plants-measurements:
+    build: ./apps/sensor
+    env_file:
+      - .env
+    environment:
+      DIRECTUS_URL: "http://rocket-meals-directus:${DIRECTUS_PORT:-8055}"
+      DIRECTUS_COLLECTION: "plants_measured_values"
+    depends_on:
+      rocket-meals-directus:
+        condition: service_started
+    restart: always
+    networks:
+      - directus_network
+    devices:
+      - /dev/i2c-1:/dev/i2c-1
+
   traefik:
     env_file:
       - .env
