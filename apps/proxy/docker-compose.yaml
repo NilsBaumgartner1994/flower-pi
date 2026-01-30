@@ -11,7 +11,7 @@ services:
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
       - "--entrypoints.traefik.address=:8080"
-      - "--certificatesresolvers.myresolver.acme.email=${CERT_MAIL}"
+      - "--certificatesresolvers.myresolver.acme.email=admin@example.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
       - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
     ports:
@@ -25,19 +25,17 @@ services:
       - traefik
     labels:
       - "traefik.enable=true"
-      - "traefik.http.middlewares.traefik-auth.basicauth.users=${BASIC_AUTH}"
       - "traefik.http.middlewares.https-redirect.redirectscheme.scheme=https"
 
       - "traefik.http.routers.traefik.entrypoints=web"
-      - "traefik.http.routers.traefik.rule=Host(`${MYHOST}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
+      - "traefik.http.routers.traefik.rule=Host(`localhost`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
       - "traefik.http.routers.traefik.middlewares=https-redirect"
 
       - "traefik.http.routers.traefik-secure.entrypoints=websecure"
-      - "traefik.http.routers.traefik-secure.rule=Host(`${MYHOST}`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
+      - "traefik.http.routers.traefik-secure.rule=Host(`localhost`) && (PathPrefix(`/dashboard`) || PathPrefix(`/api`))"
       - "traefik.http.routers.traefik-secure.service=api@internal"
-      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
       - "traefik.http.routers.traefik-secure.tls=true"
-      - "traefik.http.routers.traefik-secure.tls.certresolver=${RESOLVER}"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=myresolver"
 
       #- "traefik.http.services.traefik.loadbalancer.server.port=8080"
 

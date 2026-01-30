@@ -6,10 +6,10 @@ services:
     build:
       context: ./
     #container_name: "rocket-meals-directus" # "replicas" is ignored if you name your container using container_name: myname
-    restart: ${RESTART}
+    restart: always
     deploy:
       mode: replicated
-      replicas: ${DIRECTUS_REPLICAS:-1} # Default to 1 if DIRECTUS_REPLICAS is not set
+      replicas: 1 # Single instance
       endpoint_mode: vip # Virtual IP - https://docs.docker.com/compose/compose-file/deploy/#endpoint_mode
     networks:
       - traefik
@@ -20,16 +20,16 @@ services:
       traefik.http.middlewares.https-redirect.redirectscheme.scheme: https
 
       traefik.http.routers.rocket-meals-backend.entrypoints: web
-      traefik.http.routers.rocket-meals-backend.rule: Host(`${MYHOST}`) && PathPrefix(`/backend`)
+      traefik.http.routers.rocket-meals-backend.rule: Host(`localhost`) && PathPrefix(`/backend`)
       traefik.http.routers.rocket-meals-backend.middlewares: https-redirect
 
       traefik.http.routers.rocket-meals-directus-secure.entrypoints: websecure
-      traefik.http.routers.rocket-meals-directus-secure.rule: Host(`${MYHOST}`) && PathPrefix(`/${ROCKET_MEALS_PATH}/${ROCKET_MEALS_BACKEND_PATH}`)
+      traefik.http.routers.rocket-meals-directus-secure.rule: Host(`localhost`) && PathPrefix(`/flower-pi/api`)
       traefik.http.routers.rocket-meals-directus-secure.middlewares: rocket-meals-directus-stripprefix
       traefik.http.routers.rocket-meals-directus-secure.tls: "true"
-      traefik.http.routers.rocket-meals-directus-secure.tls.certresolver: "${RESOLVER}"
-      traefik.http.services.rocket-meals-directus-secure.loadbalancer.server.port: ${DIRECTUS_PORT}
-      traefik.http.middlewares.rocket-meals-directus-stripprefix.stripprefix.prefixes: /${ROCKET_MEALS_PATH}/${ROCKET_MEALS_BACKEND_PATH}
+      traefik.http.routers.rocket-meals-directus-secure.tls.certresolver: "myresolver"
+      traefik.http.services.rocket-meals-directus-secure.loadbalancer.server.port: 8055
+      traefik.http.middlewares.rocket-meals-directus-stripprefix.stripprefix.prefixes: /flower-pi/api
 
       # network: traefik
     volumes:
@@ -44,19 +44,13 @@ services:
       #- ./Backend/database:/directus/database
       # If you want to load extensions from the host
       - ./Backend/directusExtensions:/directus/extensions
-      # TL1 food plan
-      - ${FOOD_SYNC_TL1FILE_EXPORT_CSV_FILE_PATH:-/dev/null}:/directus/tl1/foodPlan.csv
-      # TL1 markings
-      - ${MARKING_SYNC_TL1FILE_EXPORT_CSV_FILE_PATH:-/dev/null}:/directus/tl1/markings.csv
-      # TL1 housing contracts
-      - ${HOUSING_CONTRACT_SYNC_TL1FILE_EXPORT_CSV_FILE_PATH:-/dev/null}:/directus/tl1/housingContracts.csv
     environment:
       # Traefik configuration
-      PUBLIC_URL: "https://${MYHOST}/${ROCKET_MEALS_PATH}/${ROCKET_MEALS_BACKEND_PATH}"
-      ROOT_REDIRECT: "/${ROCKET_MEALS_PATH}/${ROCKET_MEALS_BACKEND_PATH}/admin"
+      PUBLIC_URL: "https://localhost/flower-pi/api"
+      ROOT_REDIRECT: "/flower-pi/api/admin"
       # Directus default configuration
       HOST: "0.0.0.0" # To bind to all interfaces for Docker
-      PORT: "${DIRECTUS_PORT}"
+      PORT: "8055"
       TZ: "Europe/Berlin"
       ACCESS_TOKEN_TTL: "15m" # Time to live for the access token
       REFRESH_TOKEN_TTL: "180d" # Time to live for the refresh token
@@ -77,31 +71,9 @@ services:
 
       EMAIL_TEMPLATES_PATH: "/directus/extensions/templates" # https://docs.directus.io/self-hosted/email-templates.html
 
-      AUTO_TRANSLATE_API_KEY: "${AUTO_TRANSLATE_API_KEY}" # Required for the auto translation plugin
-
-      SYNC_FOR_CUSTOMER: "${SYNC_FOR_CUSTOMER}" # For which customer the sync is for
-
-      FOOD_SYNC_MODE: "${FOOD_SYNC_MODE}"
-      FOOD_SYNC_TL1FILE_EXPORT_CSV_FILE_PATH: "${FOOD_SYNC_TL1FILE_EXPORT_CSV_FILE_PATH}" # So in directus we know if the host system has a file to sync, but we will use the directus internal file path: /directus/tl1/foodPlan.csv
-      FOOD_SYNC_TL1FILE_EXPORT_CSV_FILE_ENCODING: "${FOOD_SYNC_TL1FILE_EXPORT_CSV_FILE_ENCODING}"
-      FOOD_SYNC_TL1WEB_EXPORT_URL: "${FOOD_SYNC_TL1WEB_EXPORT_URL}"
-
-      # Rocket Meals configuration - Markings
-      MARKING_SYNC_MODE: "${MARKING_SYNC_MODE}"
-      MARKING_SYNC_TL1FILE_EXPORT_CSV_FILE_PATH: "${MARKING_SYNC_TL1FILE_EXPORT_CSV_FILE_PATH}" # So in directus we know if the host system has a file to sync, but we will use the directus internal file path: /directus/tl1/markings.csv
-      MARKING_SYNC_TL1FILE_EXPORT_CSV_FILE_ENCODING: "${MARKING_SYNC_TL1FILE_EXPORT_CSV_FILE_ENCODING}"
-
-      HOUSING_CONTRACT_SYNC_TL1FILE_EXPORT_CSV_FILE_PATH: "${HOUSING_CONTRACT_SYNC_TL1FILE_EXPORT_CSV_FILE_PATH}" # So in directus we know if the host system has a file to sync, but we will use the directus internal file path: /directus/tl1/housingContracts.csv
-
-      # Env File
-      HOST_ENV_FILE_PATH: "/directus/host.env" # Path to the host .env file - so that we can read variables from there
-
-      # OpenAI configuration
-      OPENAI_API_KEY: "${OPENAI_API_KEY}"
-
       # Directus Database configuration
-      KEY: "${DATABASE_KEY}"
-      SECRET: "${DATABASE_SECRET}"
+      KEY: "directus-key"
+      SECRET: "directus-secret"
 
       # Database
       # Debug database
@@ -116,51 +88,8 @@ services:
       DB_PASSWORD: "directus"
 
       # Directus Admin user
-      ADMIN_EMAIL: "${ADMIN_EMAIL}"
-      ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
-
-      # Directus Email configuration
-      EMAIL_VERIFY_SETUP: "${EMAIL_VERIFY_SETUP}"
-      EMAIL_FROM: "${EMAIL_FROM}"
-      EMAIL_TRANSPORT: "ses"
-      EMAIL_SES_CREDENTIALS__ACCESS_KEY_ID: "${EMAIL_SES_CREDENTIALS__ACCESS_KEY_ID}"
-      EMAIL_SES_CREDENTIALS__SECRET_ACCESS_KEY: "${EMAIL_SES_CREDENTIALS__SECRET_ACCESS_KEY}"
-      EMAIL_SES_REGION: "eu-central-1"
-
-      # Directus Auth configuration
-      AUTH_PROVIDERS: "${AUTH_PROVIDERS}"
-
-      # Directus Auth configuration - Apple predefined values
-      AUTH_APPLE_DRIVER: "openid"
-      AUTH_APPLE_REDIRECT_ALLOW_LIST: "${AUTH_REDIRECT_ALLOW_LIST}"
-      AUTH_APPLE_MODE: "session"
-      AUTH_APPLE_CLIENT_ID: "${AUTH_APPLE_CLIENT_ID}"
-      AUTH_APPLE_CLIENT_SECRET: "${AUTH_APPLE_CLIENT_SECRET}"
-      AUTH_APPLE_DEFAULT_ROLE_ID: "${DEFAULT_ROLE_ID}" #If you want to set a default role id
-      AUTH_APPLE_ICON: "apple"
-      AUTH_APPLE_LABEL: "Apple"
-      AUTH_APPLE_ALLOW_PUBLIC_REGISTRATION: "true"
-      AUTH_APPLE_ISSUER_URL: "https://appleid.apple.com/.well-known/openid-configuration"
-      AUTH_APPLE_SCOPE: "name email" # We sadly only get the email and name on the first login - https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_js/configuring_your_webpage_for_sign_in_with_apple
-      AUTH_APPLE_IDENTIFIER_KEY: "sub" # The key in the response that identifies the user
-      AUTH_APPLE_PARAMS: '{"response_mode":"form_post"}'
-      # Auto generate and refresh the client secret
-      AUTH_APPLE_HOOK_APPLE_TEAM_ID: "${AUTH_APPLE_HOOK_APPLE_TEAM_ID}"
-      AUTH_APPLE_HOOK_APPLE_KEY_ID: "${AUTH_APPLE_HOOK_APPLE_KEY_ID}"
-      AUTH_APPLE_HOOK_PRIVATE_KEY: "${AUTH_APPLE_HOOK_PRIVATE_KEY}"
-
-      # Directus Auth configuration - Google predefined values
-      AUTH_GOOGLE_DRIVER: "openid"
-      AUTH_GOOGLE_REDIRECT_ALLOW_LIST: "${AUTH_REDIRECT_ALLOW_LIST}"
-      AUTH_GOOGLE_MODE: "session"
-      AUTH_GOOGLE_CLIENT_ID: "${AUTH_GOOGLE_CLIENT_ID}"
-      AUTH_GOOGLE_CLIENT_SECRET: "${AUTH_GOOGLE_CLIENT_SECRET}"
-      AUTH_GOOGLE_ISSUER_URL: "https://accounts.google.com/.well-known/openid-configuration"
-      AUTH_GOOGLE_IDENTIFIER_KEY: "sub"
-      AUTH_GOOGLE_DEFAULT_ROLE_ID: "${DEFAULT_ROLE_ID}"
-      AUTH_GOOGLE_ICON: "google"
-      AUTH_GOOGLE_LABEL: "Google"
-      AUTH_GOOGLE_ALLOW_PUBLIC_REGISTRATION: "true"
+      ADMIN_EMAIL: "admin@example.com"
+      ADMIN_PASSWORD: "admin123"
 
   # The Directus database - postgres with data volume
   # https://docs.directus.io/self-hosted/docker-guide.html#example-docker-compose
@@ -168,7 +97,7 @@ services:
     image: postgis/postgis:13-master
     # Required when running on platform other than amd64, like Apple M1/M2:
     # platform: linux/amd64
-    restart: ${RESTART}
+    restart: always
     volumes:
       # Currently in: rocket-meals/apps/backend/docker-compose.yaml
       # We want the uploads to be persistent at rocket-meals/data/database_file_uploads
@@ -198,9 +127,9 @@ services:
           action: rebuild
     environment:
       # Directus Admin user
-      ADMIN_EMAIL: "${ADMIN_EMAIL}"
-      ADMIN_PASSWORD: "${ADMIN_PASSWORD}"
-      DIRECTUS_PORT: "${DIRECTUS_PORT}"
+      ADMIN_EMAIL: "admin@example.com"
+      ADMIN_PASSWORD: "admin123"
+      DIRECTUS_PORT: "8055"
     networks:
       - directus_network
     volumes:
@@ -209,7 +138,7 @@ services:
       # Generate Apple SSO client secret
       - ./genSSO_Apple.sh:/directus/sso/genSSO_Apple.sh
       # Env File
-      - ./../../.env:/directus/host.env # Path to the host .env file - so that we can read variables from there
+      - ./../../data/host.env:/directus/host.env # Placeholder path if needed for sync tooling
 
   rocket-meals-database-backup:
     build:
@@ -250,7 +179,7 @@ services:
       PGPASSWORD: "directus"
       PGDB: "directus"
       PGHOST: "rocket-meals-database"
-      BACKUP_FILE: ${BACKUP_FILE}
+      BACKUP_FILE: "backup.sql"
     networks:
       - directus_network
     depends_on:
@@ -261,7 +190,7 @@ services:
 
   # The cache service for Directus
   rocket-meals-cache:
-    restart: ${RESTART}
+    restart: always
     image: redis:6.2.6
     networks:
       - directus_network

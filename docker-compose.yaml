@@ -4,18 +4,15 @@ services:
     volumes:
       - ./preparePermission.sh:/preparePermission.sh
       - ./data:/data
-      - .env:/.env
     working_dir: /
     entrypoint: ["/bin/sh", "-c", "chmod +x ./preparePermission.sh && ./preparePermission.sh"]
 
   plants-measurements:
     build: ./apps/sensor
-    env_file:
-      - .env
     environment:
-      DIRECTUS_URL: "http://rocket-meals-directus:${DIRECTUS_PORT:-8055}"
+      DIRECTUS_URL: "http://rocket-meals-directus:8055"
       DIRECTUS_COLLECTION: "plants_measured_values"
-      SENSOR_DEBUG: "${SENSOR_DEBUG:-false}"
+      SENSOR_DEBUG: "false"
     depends_on:
       rocket-meals-directus:
         condition: service_started
@@ -26,15 +23,11 @@ services:
       - /dev/i2c-1:/dev/i2c-1
 
   traefik:
-    env_file:
-      - .env
     extends:
       service: traefik
       file: apps/proxy/docker-compose.yaml
 
   rocket-meals-directus:
-    env_file:
-      - .env
     depends_on:
       prepare-data:
         condition: service_completed_successfully
@@ -47,8 +40,6 @@ services:
       file: apps/backend/docker-compose.yaml
 
   rocket-meals-database:
-    env_file:
-      - .env
     depends_on:
       prepare-data:
         condition: service_completed_successfully
@@ -61,29 +52,7 @@ services:
       service: rocket-meals-database
       file: apps/backend/docker-compose.yaml
 
-  rocket-meals-database-sync:
-    env_file:
-      - .env
-    depends_on:
-      prepare-data:
-        condition: service_completed_successfully
-    extends:
-      service: rocket-meals-database-sync
-      file: apps/backend/docker-compose.yaml
-
-  rocket-meals-database-backup:
-    env_file:
-      - .env
-    depends_on:
-      prepare-data:
-        condition: service_completed_successfully
-    extends:
-      service: rocket-meals-database-backup
-      file: apps/backend/docker-compose.yaml
-
   rocket-meals-cache:
-    env_file:
-      - .env
     extends:
       service: rocket-meals-cache
       file: apps/backend/docker-compose.yaml
