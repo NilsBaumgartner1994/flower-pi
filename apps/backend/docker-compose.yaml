@@ -20,14 +20,14 @@ services:
       traefik.http.middlewares.https-redirect.redirectscheme.scheme: https
 
       traefik.http.routers.flower-pi-backend.entrypoints: web
-      traefik.http.routers.flower-pi-backend.rule: Host(`${HOST:-localhost}`) && PathPrefix(`/backend`)
+      traefik.http.routers.flower-pi-backend.rule: Host(`${MYHOST:-127.0.0.1}`) && PathPrefix(`/backend`)
       traefik.http.routers.flower-pi-backend.middlewares: https-redirect
 
       traefik.http.routers.flower-pi-directus-secure.entrypoints: websecure
-      traefik.http.routers.flower-pi-directus-secure.rule: Host(`${HOST:-localhost}`) && PathPrefix(`/flower-pi/api`)
+      traefik.http.routers.flower-pi-directus-secure.rule: Host(`${MYHOST:-127.0.0.1}`) && PathPrefix(`/flower-pi/api`)
       traefik.http.routers.flower-pi-directus-secure.middlewares: flower-pi-directus-stripprefix
       traefik.http.routers.flower-pi-directus-secure.tls: "true"
-      traefik.http.routers.flower-pi-directus-secure.tls.certresolver: "myresolver"
+      traefik.http.routers.flower-pi-directus-secure.tls.certresolver: "${RESOLVER:-default}"
       traefik.http.services.flower-pi-directus-secure.loadbalancer.server.port: 8055
       traefik.http.middlewares.flower-pi-directus-stripprefix.stripprefix.prefixes: /flower-pi/api
 
@@ -46,7 +46,7 @@ services:
       - ./Backend/directusExtensions:/directus/extensions
     environment:
       # Traefik configuration
-      PUBLIC_URL: "https://${HOST:-localhost}/flower-pi/api"
+      PUBLIC_URL: "https://${MYHOST:-127.0.0.1}/flower-pi/api"
       ROOT_REDIRECT: "/flower-pi/api/admin"
       # Directus default configuration
       HOST: "0.0.0.0" # To bind to all interfaces for Docker
