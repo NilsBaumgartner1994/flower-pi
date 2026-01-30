@@ -10,11 +10,11 @@ services:
   plants-measurements:
     build: ./apps/sensor
     environment:
-      DIRECTUS_URL: "http://rocket-meals-directus:8055"
+      DIRECTUS_URL: "http://flower-pi-directus:8055"
       DIRECTUS_COLLECTION: "plants_measured_values"
-      SENSOR_DEBUG: "false"
+      SENSOR_DEBUG: "${SENSOR_DEBUG:-false}"
     depends_on:
-      rocket-meals-directus:
+      flower-pi-directus:
         condition: service_started
     restart: always
     networks:
@@ -27,19 +27,19 @@ services:
       service: traefik
       file: apps/proxy/docker-compose.yaml
 
-  rocket-meals-directus:
+  flower-pi-directus:
     depends_on:
       prepare-data:
         condition: service_completed_successfully
-      rocket-meals-database:
+      flower-pi-database:
         condition: service_healthy
-      rocket-meals-cache:
+      flower-pi-cache:
         condition: service_started
     extends:
-      service: rocket-meals-directus
+      service: flower-pi-directus
       file: apps/backend/docker-compose.yaml
 
-  rocket-meals-database:
+  flower-pi-database:
     depends_on:
       prepare-data:
         condition: service_completed_successfully
@@ -49,12 +49,12 @@ services:
       timeout: 5s
       retries: 5
     extends:
-      service: rocket-meals-database
+      service: flower-pi-database
       file: apps/backend/docker-compose.yaml
 
-  rocket-meals-cache:
+  flower-pi-cache:
     extends:
-      service: rocket-meals-cache
+      service: flower-pi-cache
       file: apps/backend/docker-compose.yaml
     networks:
       - directus_network
