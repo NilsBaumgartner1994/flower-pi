@@ -15,6 +15,7 @@ services:
     environment:
       DIRECTUS_URL: "http://rocket-meals-directus:${DIRECTUS_PORT:-8055}"
       DIRECTUS_COLLECTION: "plants_measured_values"
+      SENSOR_DEBUG: "${SENSOR_DEBUG:-false}"
     depends_on:
       rocket-meals-directus:
         condition: service_started

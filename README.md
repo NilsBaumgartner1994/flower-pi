@@ -49,3 +49,15 @@ git clone https://github.com/dein-benutzername/rocket-meals.git
 cd rocket-meals
 yarn install
 ```
+
+### Sensor-Debug-Modus (docker-compose)
+
+Für einen Debug-Lauf der Sensoren können zufällige, sinnvolle Messwerte generiert werden. Starte dafür
+`docker-compose` mit gesetztem `SENSOR_DEBUG=true`. Beispiel:
+
+```bash
+SENSOR_DEBUG=true docker-compose up plants-measurements
+```
+
+Der Debug-Modus nutzt zufällige Spannungen zwischen den konfigurierten `SENSOR_VOLTAGE_DRY` und
+`SENSOR_VOLTAGE_WET` Werten und berechnet daraus die Feuchtigkeit.

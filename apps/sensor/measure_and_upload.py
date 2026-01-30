@@ -5,11 +5,9 @@ import time
 from statistics import mean
 from typing import List
 
-import board
-import busio
+import random
+
 import requests
-import adafruit_ads1x15.ads1115 as ADS
-from adafruit_ads1x15.analog_in import AnalogIn
 
 V_DRY = float(os.getenv("SENSOR_VOLTAGE_DRY", "2.80"))
 V_WET = float(os.getenv("SENSOR_VOLTAGE_WET", "1.20"))
@@ -19,6 +17,7 @@ SAMPLE_DURATION_SECONDS = int(os.getenv("SENSOR_SAMPLE_DURATION_SECONDS", "60"))
 DIRECTUS_URL = os.getenv("DIRECTUS_URL", "http://rocket-meals-directus:8055").rstrip("/")
 DIRECTUS_TOKEN = os.getenv("DIRECTUS_TOKEN", "")
 DIRECTUS_COLLECTION = os.getenv("DIRECTUS_COLLECTION", "plants_measured_values")
+SENSOR_DEBUG = os.getenv("SENSOR_DEBUG", "false").strip().lower() in {"1", "true", "yes", "on"}
 
 
 def moisture_percent(voltage: float, v_dry: float, v_wet: float) -> float:
@@ -26,7 +25,7 @@ def moisture_percent(voltage: float, v_dry: float, v_wet: float) -> float:
     return max(0.0, min(100.0, value))
 
 
-def read_samples(channel: AnalogIn, duration_seconds: int, interval_seconds: float) -> dict:
+def read_samples(channel, duration_seconds: int, interval_seconds: float) -> dict:
     voltages: List[float] = []
     moistures: List[float] = []
     voltage_min = float("inf")
@@ -54,6 +53,19 @@ def read_samples(channel: AnalogIn, duration_seconds: int, interval_seconds: flo
     }
 
 
+def read_samples_debug(duration_seconds: int, interval_seconds: float) -> dict:
+    sample_count = max(1, int(duration_seconds / max(interval_seconds, 0.1)))
+    voltages = [random.uniform(min(V_DRY, V_WET), max(V_DRY, V_WET)) for _ in range(sample_count)]
+    moistures = [moisture_percent(voltage, V_DRY, V_WET) for voltage in voltages]
+    return {
+        "voltage_avg": mean(voltages),
+        "voltage_min": min(voltages),
+        "voltage_max": max(voltages),
+        "moisture_avg": mean(moistures),
+        "samples": len(voltages),
+    }
+
+
 def upload_measurement(payload: dict) -> None:
     if not DIRECTUS_TOKEN:
         raise RuntimeError("DIRECTUS_TOKEN is not set.")
@@ -65,13 +77,23 @@ def upload_measurement(payload: dict) -> None:
 
 
 def main() -> None:
-    i2c = busio.I2C(board.SCL, board.SDA)
-    ads = ADS.ADS1115(i2c)
-    ads.gain = 1
-    channel = AnalogIn(ads, 0)
+    channel = None
+    if not SENSOR_DEBUG:
+        import board
+        import busio
+        import adafruit_ads1x15.ads1115 as ADS
+        from adafruit_ads1x15.analog_in import AnalogIn
+
+        i2c = busio.I2C(board.SCL, board.SDA)
+        ads = ADS.ADS1115(i2c)
+        ads.gain = 1
+        channel = AnalogIn(ads, 0)
 
     while True:
-        measurements = read_samples(channel, SAMPLE_DURATION_SECONDS, SAMPLE_INTERVAL_SECONDS)
+        if SENSOR_DEBUG:
+            measurements = read_samples_debug(SAMPLE_DURATION_SECONDS, SAMPLE_INTERVAL_SECONDS)
+        else:
+            measurements = read_samples(channel, SAMPLE_DURATION_SECONDS, SAMPLE_INTERVAL_SECONDS)
         payload = {
             "measured_at": dt.datetime.now(dt.timezone.utc).isoformat(),
             "moisture_percentage_average": round(measurements["moisture_avg"], 1),
