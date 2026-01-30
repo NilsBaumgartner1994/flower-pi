@@ -56,7 +56,13 @@ Für einen Debug-Lauf der Sensoren können zufällige, sinnvolle Messwerte gener
 `docker-compose` mit gesetztem `SENSOR_DEBUG=true`. Beispiel:
 
 ```bash
-SENSOR_DEBUG=true docker-compose up plants-measurements
+SENSOR_DEBUG=true docker compose up plants-measurements
+```
+
+Für reale Sensor-Hardware (I²C) steht ein separates Profil zur Verfügung:
+
+```bash
+docker compose --profile sensor-hw up plants-measurements-hw
 ```
 
 Der Debug-Modus nutzt zufällige Spannungen zwischen den konfigurierten `SENSOR_VOLTAGE_DRY` und
