@@ -14,7 +14,7 @@ V_WET = float(os.getenv("SENSOR_VOLTAGE_WET", "1.20"))
 SAMPLE_INTERVAL_SECONDS = float(os.getenv("SENSOR_SAMPLE_INTERVAL_SECONDS", "1"))
 SAMPLE_DURATION_SECONDS = int(os.getenv("SENSOR_SAMPLE_DURATION_SECONDS", "60"))
 
-DIRECTUS_URL = os.getenv("DIRECTUS_URL", "http://rocket-meals-directus:8055").rstrip("/")
+DIRECTUS_URL = os.getenv("DIRECTUS_URL", "http://flower-pi-directus:8055").rstrip("/")
 DIRECTUS_TOKEN = os.getenv("DIRECTUS_TOKEN", "")
 DIRECTUS_COLLECTION = os.getenv("DIRECTUS_COLLECTION", "plants_measured_values")
 SENSOR_DEBUG = os.getenv("SENSOR_DEBUG", "false").strip().lower() in {"1", "true", "yes", "on"}

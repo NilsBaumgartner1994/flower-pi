@@ -1,5 +1,5 @@
 export class DockerDirectusHelper {
-  static DIRECTUS_CONTAINER_NAME = 'rocket-meals-directus';
+  static DIRECTUS_CONTAINER_NAME = 'flower-pi-directus';
 
   // Health-Check-Funktion für Directus
   public static getDirectusServerUrl(): string {

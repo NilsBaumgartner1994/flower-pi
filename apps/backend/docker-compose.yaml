@@ -2,10 +2,10 @@ version: "3.8"
 
 services:
   # The Directus backend
-  rocket-meals-directus:
+  flower-pi-directus:
     build:
       context: ./
-    #container_name: "rocket-meals-directus" # "replicas" is ignored if you name your container using container_name: myname
+    #container_name: "flower-pi-directus" # "replicas" is ignored if you name your container using container_name: myname
     restart: always
     deploy:
       mode: replicated
@@ -19,17 +19,17 @@ services:
       traefik.docker.network: traefik
       traefik.http.middlewares.https-redirect.redirectscheme.scheme: https
 
-      traefik.http.routers.rocket-meals-backend.entrypoints: web
-      traefik.http.routers.rocket-meals-backend.rule: Host(`localhost`) && PathPrefix(`/backend`)
-      traefik.http.routers.rocket-meals-backend.middlewares: https-redirect
+      traefik.http.routers.flower-pi-backend.entrypoints: web
+      traefik.http.routers.flower-pi-backend.rule: Host(`${HOST:-localhost}`) && PathPrefix(`/backend`)
+      traefik.http.routers.flower-pi-backend.middlewares: https-redirect
 
-      traefik.http.routers.rocket-meals-directus-secure.entrypoints: websecure
-      traefik.http.routers.rocket-meals-directus-secure.rule: Host(`localhost`) && PathPrefix(`/flower-pi/api`)
-      traefik.http.routers.rocket-meals-directus-secure.middlewares: rocket-meals-directus-stripprefix
-      traefik.http.routers.rocket-meals-directus-secure.tls: "true"
-      traefik.http.routers.rocket-meals-directus-secure.tls.certresolver: "myresolver"
-      traefik.http.services.rocket-meals-directus-secure.loadbalancer.server.port: 8055
-      traefik.http.middlewares.rocket-meals-directus-stripprefix.stripprefix.prefixes: /flower-pi/api
+      traefik.http.routers.flower-pi-directus-secure.entrypoints: websecure
+      traefik.http.routers.flower-pi-directus-secure.rule: Host(`${HOST:-localhost}`) && PathPrefix(`/flower-pi/api`)
+      traefik.http.routers.flower-pi-directus-secure.middlewares: flower-pi-directus-stripprefix
+      traefik.http.routers.flower-pi-directus-secure.tls: "true"
+      traefik.http.routers.flower-pi-directus-secure.tls.certresolver: "myresolver"
+      traefik.http.services.flower-pi-directus-secure.loadbalancer.server.port: 8055
+      traefik.http.middlewares.flower-pi-directus-stripprefix.stripprefix.prefixes: /flower-pi/api
 
       # network: traefik
     volumes:
@@ -46,7 +46,7 @@ services:
       - ./Backend/directusExtensions:/directus/extensions
     environment:
       # Traefik configuration
-      PUBLIC_URL: "https://localhost/flower-pi/api"
+      PUBLIC_URL: "https://${HOST:-localhost}/flower-pi/api"
       ROOT_REDIRECT: "/flower-pi/api/admin"
       # Directus default configuration
       HOST: "0.0.0.0" # To bind to all interfaces for Docker
@@ -64,7 +64,7 @@ services:
       CACHE_AUTO_PURGE: "true" # Purge when change in tables detected - https://docs.directus.io/self-hosted/config-options.html#cache
       CACHE_TTL: "5m" # Cache time to live - aka. how long the cache is valid
       CACHE_STORE: "redis"
-      REDIS: "redis://rocket-meals-cache:6379" # For Cache and Synchronization of Replicas # Required for Replicas to work - Directus communicates which replica is the master
+      REDIS: "redis://flower-pi-cache:6379" # For Cache and Synchronization of Replicas # Required for Replicas to work - Directus communicates which replica is the master
       # Directus synchronization configuration
       SYNCHRONIZATION_STORE: "redis" # Multiple instances of Directus need to communicate with each other to not trigger the same event multiple times - https://docs.directus.io/self-hosted/config-options.html#synchronization
       MARKETPLACE_TRUST: "all" # Trust all marketplace extensions - Directus Marketplace does not support extensions that require a database connection out of the box
@@ -81,19 +81,19 @@ services:
       #DB_FILENAME: './database/data.db'
       # Production database
       DB_CLIENT: "pg"
-      DB_HOST: "rocket-meals-database"
+      DB_HOST: "flower-pi-database"
       DB_PORT: "5432"
       DB_DATABASE: "directus"
       DB_USER: "directus"
       DB_PASSWORD: "directus"
 
       # Directus Admin user
-      ADMIN_EMAIL: "admin@example.com"
-      ADMIN_PASSWORD: "admin123"
+      ADMIN_EMAIL: "${ADMIN_EMAIL:-admin@example.com}"
+      ADMIN_PASSWORD: "${ADMIN_PASSWORD:-admin123}"
 
   # The Directus database - postgres with data volume
   # https://docs.directus.io/self-hosted/docker-guide.html#example-docker-compose
-  rocket-meals-database:
+  flower-pi-database:
     image: postgis/postgis:13-master
     # Required when running on platform other than amd64, like Apple M1/M2:
     # platform: linux/amd64
@@ -117,7 +117,7 @@ services:
     networks:
       - directus_network
 
-  rocket-meals-database-sync:
+  flower-pi-database-sync:
     build:
       context: ./../../ # Build from project root for monorepo access
       dockerfile: apps/backend-sync/Dockerfile
@@ -140,7 +140,7 @@ services:
       # Env File
       - ./../../data/host.env:/directus/host.env # Placeholder path if needed for sync tooling
 
-  rocket-meals-database-backup:
+  flower-pi-database-backup:
     build:
       context: ./dockerDatabaseBackup
       dockerfile: Dockerfile
@@ -153,7 +153,7 @@ services:
       # Every minute: * * * * *
       - CRON_SCHEDULE=0 * * * *
       - PGDB=directus
-      - PGHOST=rocket-meals-database
+      - PGHOST=flower-pi-database
       - DELETE_OLDER_THAN=44640
     volumes:
       # We want the uploads to be persistent at rocket-meals/data/database_file_uploads
@@ -161,12 +161,12 @@ services:
       - ./../../data/database_backups:/dump
     command: dump-cron
     depends_on:
-      - rocket-meals-database
+      - flower-pi-database
     networks:
       - directus_network
 
   # Service for restoring the database from a backup
-  rocket-meals-database-restore:
+  flower-pi-database-restore:
     build:
       context: ./dockerDatabaseBackupRestore
       dockerfile: Dockerfile
@@ -178,18 +178,18 @@ services:
       PGUSER: "directus"
       PGPASSWORD: "directus"
       PGDB: "directus"
-      PGHOST: "rocket-meals-database"
+      PGHOST: "flower-pi-database"
       BACKUP_FILE: "backup.sql"
     networks:
       - directus_network
     depends_on:
-      rocket-meals-database:
+      flower-pi-database:
         condition: service_healthy
     profiles:
       - restore # Only run this service when the restore profile is set
 
   # The cache service for Directus
-  rocket-meals-cache:
+  flower-pi-cache:
     restart: always
     image: redis:6.2.6
     networks:

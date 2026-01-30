@@ -1,7 +1,7 @@
 #!/bin/bash
 
 BACKUP_DIR="./../../database_backups"
-DB_CONTAINER="rocket-meals-database"
+DB_CONTAINER="flower-pi-database"
 DB_USER="directus"
 DB_NAME="directus"
 
@@ -81,18 +81,18 @@ fi
 
 # Build the Docker image for the restore service before running it
 echo "Building Docker image for the restore service..."
-docker-compose build rocket-meals-database-restore
+docker-compose build flower-pi-database-restore
 
 # Start the restore process using docker-compose with the specified profile
 echo "Starting the restore process..."
-BACKUP_FILE="$BACKUP_FILE_NAME" docker-compose --profile restore up rocket-meals-database-restore
+BACKUP_FILE="$BACKUP_FILE_NAME" docker-compose --profile restore up flower-pi-database-restore
 
 # Optional: Stop the restore service after completion
 echo "Stopping the restore service..."
-docker-compose stop rocket-meals-database-restore
+docker-compose stop flower-pi-database-restore
 
 # Optional: Remove the restore service container
 echo "Removing the restore service container..."
-docker-compose rm -f rocket-meals-database-restore
+docker-compose rm -f flower-pi-database-restore
 
 echo "Database restore process completed."

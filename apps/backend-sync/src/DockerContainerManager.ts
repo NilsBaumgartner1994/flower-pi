@@ -5,7 +5,7 @@ import { DockerDirectusPingHelper } from './DockerDirectusPingHelper';
 const execAsync = promisify(exec);
 
 export class DockerContainerManager {
-  static DIRECTUS_SERVICE_NAME = 'rocket-meals-directus';
+  static DIRECTUS_SERVICE_NAME = 'flower-pi-directus';
 
   /**
    * Startet den Directus-Container neu, wenn bsp die Datenbank schema geändert wurde.
