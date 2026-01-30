@@ -3,6 +3,8 @@ x-plants-measurements-base: &plants-measurements-base
   environment:
     DIRECTUS_URL: "http://flower-pi-directus:8055"
     DIRECTUS_COLLECTION: "plants_measured_values"
+    ADMIN_EMAIL: "${ADMIN_EMAIL:-}"
+    ADMIN_PASSWORD: "${ADMIN_PASSWORD:-}"
     SENSOR_DEBUG: "${SENSOR_DEBUG:-false}"
   depends_on:
     flower-pi-directus:
