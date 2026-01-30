@@ -1,24 +1,33 @@
+x-plants-measurements-base: &plants-measurements-base
+  build: ./apps/sensor
+  environment:
+    DIRECTUS_URL: "http://flower-pi-directus:8055"
+    DIRECTUS_COLLECTION: "plants_measured_values"
+    SENSOR_DEBUG: "${SENSOR_DEBUG:-false}"
+  depends_on:
+    flower-pi-directus:
+      condition: service_started
+  restart: always
+  networks:
+    - directus_network
+
 services:
   prepare-data:
     image: debian:bookworm-slim
     volumes:
       - ./preparePermission.sh:/preparePermission.sh
       - ./data:/data
+      - ./.env:/data/.env
     working_dir: /
     entrypoint: ["/bin/sh", "-c", "chmod +x ./preparePermission.sh && ./preparePermission.sh"]
 
   plants-measurements:
-    build: ./apps/sensor
-    environment:
-      DIRECTUS_URL: "http://flower-pi-directus:8055"
-      DIRECTUS_COLLECTION: "plants_measured_values"
-      SENSOR_DEBUG: "${SENSOR_DEBUG:-false}"
-    depends_on:
-      flower-pi-directus:
-        condition: service_started
-    restart: always
-    networks:
-      - directus_network
+    <<: *plants-measurements-base
+
+  plants-measurements-hw:
+    <<: *plants-measurements-base
+    profiles:
+      - sensor-hw
     devices:
       - /dev/i2c-1:/dev/i2c-1
 
