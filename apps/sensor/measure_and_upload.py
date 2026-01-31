@@ -10,6 +10,8 @@ import random
 
 import requests
 
+print("Starting sensor measurement script...")
+
 V_DRY = float(os.getenv("SENSOR_VOLTAGE_DRY", "2.80"))
 V_WET = float(os.getenv("SENSOR_VOLTAGE_WET", "1.20"))
 SAMPLE_INTERVAL_SECONDS = float(os.getenv("SENSOR_SAMPLE_INTERVAL_SECONDS", "5"))
@@ -145,6 +147,7 @@ def main() -> None:
             samples.clear()
             window_started_at = time.time()
 
+        print(f"Sleep for {SAMPLE_INTERVAL_SECONDS} seconds...")
         time.sleep(SAMPLE_INTERVAL_SECONDS)
 
 
