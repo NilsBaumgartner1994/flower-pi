@@ -55,6 +55,11 @@
       },
       {
         "type": "hook",
+        "name": "plant-moisture-hook",
+        "source": "src/plant-moisture-hook/index.ts"
+      },
+      {
+        "type": "hook",
         "name": "workflows-runs-sync-hook",
         "source": "src/workflows-runs-hook/index.ts"
       }
