@@ -1,6 +1,6 @@
 # dockerDatabaseRestore/Dockerfile
 
-FROM postgis/postgis:15
+FROM postgis/postgis:15-3.4
 
 # Copy a restore script into the container
 COPY restore.sh /usr/local/bin/restore.sh

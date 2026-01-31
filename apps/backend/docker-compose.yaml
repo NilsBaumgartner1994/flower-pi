@@ -94,7 +94,7 @@ services:
   # The Directus database - postgres with data volume
   # https://docs.directus.io/self-hosted/docker-guide.html#example-docker-compose
   flower-pi-database:
-    image: postgis/postgis:15
+    image: postgis/postgis:15-3.4
     restart: always
     volumes:
       # Currently in: rocket-meals/apps/backend/docker-compose.yaml
