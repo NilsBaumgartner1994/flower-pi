@@ -18,9 +18,16 @@ AVERAGE_WINDOW_SECONDS = int(
 )
 
 DIRECTUS_URL = os.getenv("DIRECTUS_URL", "http://flower-pi-directus:8055").rstrip("/")
+DIRECTUS_URL = "https://127.0.0.1/flower-pi/api"
 DIRECTUS_COLLECTION = os.getenv("DIRECTUS_COLLECTION", "sensor_measurements")
-ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "")
-ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "")
+ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "admin@example.com")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "admin123")
+DIRECTUS_VERIFY_TLS = os.getenv("DIRECTUS_VERIFY_TLS", "false").strip().lower() in {
+    "1",
+    "true",
+    "yes",
+    "on",
+}
 SENSOR_DEBUG = os.getenv("SENSOR_DEBUG", "false").strip().lower() in {"1", "true", "yes", "on"}
 
 _DIRECTUS_TOKEN: Optional[str] = None
@@ -62,7 +69,7 @@ def login_directus() -> str:
 
     url = f"{DIRECTUS_URL}/auth/login"
     payload = {"email": ADMIN_EMAIL, "password": ADMIN_PASSWORD}
-    response = requests.post(url, json=payload, timeout=20)
+    response = requests.post(url, json=payload, timeout=20, verify=DIRECTUS_VERIFY_TLS)
     response.raise_for_status()
     data = response.json().get("data", {})
     token = data.get("access_token")
@@ -90,7 +97,9 @@ def upload_measurement(payload: dict) -> None:
     token = get_directus_token()
     url = f"{DIRECTUS_URL}/items/{DIRECTUS_COLLECTION}"
     headers = {"Authorization": f"Bearer {token}"}
-    response = requests.post(url, json=payload, headers=headers, timeout=20)
+    response = requests.post(
+        url, json=payload, headers=headers, timeout=20, verify=DIRECTUS_VERIFY_TLS
+    )
     response.raise_for_status()
 
 
