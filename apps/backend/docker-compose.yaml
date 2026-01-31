@@ -41,7 +41,7 @@ services:
       # the relative path is therefore ./..(apps)/..(rocket-meals)/data/database_file_uploads
       - ./../../data/database_file_uploads:/directus/uploads
       # Make sure to also mount the volume when using SQLite
-      #- ./Backend/database:/directus/database
+      - ./../../data/database:/directus/database
       # If you want to load extensions from the host
       - ./Backend/directusExtensions:/directus/extensions
     environment:
@@ -76,44 +76,13 @@ services:
       SECRET: "directus-secret"
 
       # Database
-      # Debug database
-      #DB_CLIENT: 'sqlite3' # https://docs.directus.io/configuration/config-options/
-      #DB_FILENAME: './database/data.db'
-      # Production database
-      DB_CLIENT: "pg"
-      DB_HOST: "flower-pi-database"
-      DB_PORT: "5432"
-      DB_DATABASE: "directus"
-      DB_USER: "directus"
-      DB_PASSWORD: "directus"
+      # Database (SQLite file)
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/data.db"
 
       # Directus Admin user
       ADMIN_EMAIL: "${ADMIN_EMAIL:-admin@example.com}"
       ADMIN_PASSWORD: "${ADMIN_PASSWORD:-admin123}"
-
-  # The Directus database - postgres with data volume
-  # https://docs.directus.io/self-hosted/docker-guide.html#example-docker-compose
-  flower-pi-database:
-    image: postgis/postgis:15-3.4
-    restart: always
-    volumes:
-      # Currently in: rocket-meals/apps/backend/docker-compose.yaml
-      # We want the uploads to be persistent at rocket-meals/data/database_file_uploads
-      # the relative path is therefore ./..(apps)/..(rocket-meals)/data/database
-      - ./../../data/database:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U directus"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    environment:
-      POSTGRES_MAX_CONNECTIONS: "500" # Optional, adjust based on your needs
-      POSTGRES_SHARED_BUFFERS: "16GB" # Optional, adjust based on your RAM # General: 25% of the total system memory -> Default 16GB
-      POSTGRES_USER: "directus"
-      POSTGRES_PASSWORD: "directus"
-      POSTGRES_DB: "directus"
-    networks:
-      - directus_network
 
   flower-pi-database-sync:
     build:
@@ -137,54 +106,6 @@ services:
       - ./genSSO_Apple.sh:/directus/sso/genSSO_Apple.sh
       # Env File
       - ./../../data/host.env:/directus/host.env # Placeholder path if needed for sync tooling
-
-  flower-pi-database-backup:
-    build:
-      context: ./dockerDatabaseBackup
-      dockerfile: Dockerfile
-      args:
-        POSTGIS_VERSION: 13-3.4 # Pass the PostGIS version dynamically if needed
-    environment:
-      - PGUSER=directus
-      - PGPASSWORD=directus
-      # Every hour: 0 * * * *
-      # Every minute: * * * * *
-      - CRON_SCHEDULE=0 * * * *
-      - PGDB=directus
-      - PGHOST=flower-pi-database
-      - DELETE_OLDER_THAN=44640
-    volumes:
-      # We want the uploads to be persistent at rocket-meals/data/database_file_uploads
-      # the relative path is therefore ./..(apps)/..(rocket-meals)/data/database_backups
-      - ./../../data/database_backups:/dump
-    command: dump-cron
-    depends_on:
-      - flower-pi-database
-    networks:
-      - directus_network
-
-  # Service for restoring the database from a backup
-  flower-pi-database-restore:
-    build:
-      context: ./dockerDatabaseBackupRestore
-      dockerfile: Dockerfile
-    volumes:
-      # We want the uploads to be persistent at rocket-meals/data/database_file_uploads
-      # the relative path is therefore ./..(apps)/..(rocket-meals)/data/database_backups
-      - ./../../data/database_backups:/dump # Ensure this matches the directory name
-    environment:
-      PGUSER: "directus"
-      PGPASSWORD: "directus"
-      PGDB: "directus"
-      PGHOST: "flower-pi-database"
-      BACKUP_FILE: "backup.sql"
-    networks:
-      - directus_network
-    depends_on:
-      flower-pi-database:
-        condition: service_healthy
-    profiles:
-      - restore # Only run this service when the restore profile is set
 
   # The cache service for Directus
   flower-pi-cache:
