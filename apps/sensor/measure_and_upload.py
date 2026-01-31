@@ -108,6 +108,7 @@ def main() -> None:
         channel = AnalogIn(ads, 0)
 
     samples: Deque[Tuple[float, float, float]] = deque()
+    window_started_at = time.time()
     while True:
         timestamp = time.time()
         if SENSOR_DEBUG:
@@ -116,11 +117,7 @@ def main() -> None:
             voltage, moisture = read_sample(channel)
         samples.append((timestamp, voltage, moisture))
 
-        window_start = timestamp - AVERAGE_WINDOW_SECONDS
-        while samples and samples[0][0] < window_start:
-            samples.popleft()
-
-        if samples:
+        if timestamp - window_started_at >= AVERAGE_WINDOW_SECONDS and samples:
             measurements = build_window_stats(samples)
             payload = {
                 "measured_at": dt.datetime.now(dt.timezone.utc).isoformat(),
@@ -136,6 +133,8 @@ def main() -> None:
                 print(f"Uploaded measurement: {payload}")
             except Exception as exc:
                 print(f"Failed to upload measurement: {exc}. Payload: {payload}")
+            samples.clear()
+            window_started_at = time.time()
 
         time.sleep(SAMPLE_INTERVAL_SECONDS)
 
