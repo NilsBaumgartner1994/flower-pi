@@ -1,13 +1,13 @@
 {
-  "collection": "workflows_runs",
-  "field": "result_hash",
+  "collection": "plants",
+  "field": "name",
   "type": "string",
   "meta": {
-    "collection": "workflows_runs",
+    "collection": "plants",
     "conditions": null,
     "display": null,
     "display_options": null,
-    "field": "result_hash",
+    "field": "name",
     "group": null,
     "hidden": false,
     "interface": "input",
@@ -15,7 +15,7 @@
     "options": null,
     "readonly": false,
     "required": false,
-    "sort": 15,
+    "sort": 8,
     "special": null,
     "translations": null,
     "validation": null,
@@ -23,8 +23,8 @@
     "width": "full"
   },
   "schema": {
-    "name": "result_hash",
-    "table": "workflows_runs",
+    "name": "name",
+    "table": "plants",
     "data_type": "character varying",
     "default_value": null,
     "max_length": 255,

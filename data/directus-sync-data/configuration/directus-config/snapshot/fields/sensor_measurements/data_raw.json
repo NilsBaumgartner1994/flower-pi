@@ -1,21 +1,23 @@
 {
-  "collection": "workflows_runs",
-  "field": "result_hash",
+  "collection": "sensor_measurements",
+  "field": "data_raw",
   "type": "string",
   "meta": {
-    "collection": "workflows_runs",
+    "collection": "sensor_measurements",
     "conditions": null,
     "display": null,
     "display_options": null,
-    "field": "result_hash",
+    "field": "data_raw",
     "group": null,
     "hidden": false,
-    "interface": "input",
+    "interface": "input-code",
     "note": null,
-    "options": null,
+    "options": {
+      "lineWrapping": true
+    },
     "readonly": false,
     "required": false,
-    "sort": 15,
+    "sort": 9,
     "special": null,
     "translations": null,
     "validation": null,
@@ -23,8 +25,8 @@
     "width": "full"
   },
   "schema": {
-    "name": "result_hash",
-    "table": "workflows_runs",
+    "name": "data_raw",
+    "table": "sensor_measurements",
     "data_type": "character varying",
     "default_value": null,
     "max_length": 255,

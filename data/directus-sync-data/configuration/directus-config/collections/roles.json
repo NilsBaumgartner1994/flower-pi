@@ -1,30 +1,16 @@
 [
   {
-    "description": "$t:admin_description",
-    "icon": "verified",
     "name": "Administrator",
+    "icon": "verified",
+    "description": "$t:admin_description",
     "parent": null,
     "_syncId": "_sync_default_admin_role"
   },
   {
-    "description": null,
-    "icon": "supervised_user_circle",
-    "name": "Gebäudemanager",
-    "parent": "abe3a726-f85c-4d70-a86c-15e7092e5da2",
-    "_syncId": "9aaa0300-e0ee-4874-b32f-2d165607867d"
-  },
-  {
-    "description": null,
-    "icon": "supervised_user_circle",
     "name": "User",
+    "icon": "supervised_user_circle",
+    "description": null,
     "parent": null,
     "_syncId": "abe3a726-f85c-4d70-a86c-15e7092e5da2"
-  },
-  {
-    "description": null,
-    "icon": "supervised_user_circle",
-    "name": "Abteilung Wohnen",
-    "parent": "9aaa0300-e0ee-4874-b32f-2d165607867d",
-    "_syncId": "e0d3b51c-8f50-4844-a788-b5152180bf43"
   }
 ]

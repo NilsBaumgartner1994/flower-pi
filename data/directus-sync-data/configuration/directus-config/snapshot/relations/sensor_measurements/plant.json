@@ -1,0 +1,25 @@
+{
+  "collection": "sensor_measurements",
+  "field": "plant",
+  "related_collection": "plants",
+  "meta": {
+    "junction_field": null,
+    "many_collection": "sensor_measurements",
+    "many_field": "plant",
+    "one_allowed_collections": null,
+    "one_collection": "plants",
+    "one_collection_field": null,
+    "one_deselect_action": "nullify",
+    "one_field": null,
+    "sort_field": null
+  },
+  "schema": {
+    "table": "sensor_measurements",
+    "column": "plant",
+    "foreign_key_table": "plants",
+    "foreign_key_column": "id",
+    "constraint_name": "sensor_measurements_plant_foreign",
+    "on_update": "NO ACTION",
+    "on_delete": "CASCADE"
+  }
+}
