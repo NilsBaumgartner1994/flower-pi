@@ -1,5 +1,5 @@
 # Use ARG to allow dynamic versioning
-ARG POSTGIS_VERSION=13-master
+ARG POSTGIS_VERSION=13-3.4
 
 # Base the image on the specific version of PostGIS
 FROM postgis/postgis:${POSTGIS_VERSION}

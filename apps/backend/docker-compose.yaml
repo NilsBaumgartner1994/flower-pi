@@ -94,8 +94,8 @@ services:
   # The Directus database - postgres with data volume
   # https://docs.directus.io/self-hosted/docker-guide.html#example-docker-compose
   flower-pi-database:
-    image: postgis/postgis:13-master
-    # Required when running on platform other than amd64, like Apple M1/M2:
+    image: postgis/postgis:13-3.4
+    # Multi-arch tag; set platform only if your Docker host needs it.
     # platform: linux/amd64
     restart: always
     volumes:
@@ -145,7 +145,7 @@ services:
       context: ./dockerDatabaseBackup
       dockerfile: Dockerfile
       args:
-        POSTGIS_VERSION: 13-master # Pass the PostGIS version dynamically if needed
+        POSTGIS_VERSION: 13-3.4 # Pass the PostGIS version dynamically if needed
     environment:
       - PGUSER=directus
       - PGPASSWORD=directus
