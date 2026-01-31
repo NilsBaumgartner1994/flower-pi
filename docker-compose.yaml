@@ -1,9 +1,13 @@
 x-plants-measurements-base: &plants-measurements-base
   build: ./apps/sensor
+  env_file:
+    - .env
   environment:
     DIRECTUS_URL: "http://flower-pi-directus:8055"
     DIRECTUS_COLLECTION: "plants_measured_values"
     SENSOR_DEBUG: "${SENSOR_DEBUG:-false}"
+    ADMIN_EMAIL: "${ADMIN_EMAIL:-}"
+    ADMIN_PASSWORD: "${ADMIN_PASSWORD:-}"
   depends_on:
     flower-pi-directus:
       condition: service_started
