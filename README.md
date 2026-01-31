@@ -30,7 +30,7 @@ Darstellung von Menüs, die sowohl für Betreiber als auch für Gäste von Vorte
 
 - **Frontend**: React Native mit Expo für plattformübergreifende mobile Anwendungen
 - **Backend**: Directus als Headless CMS für flexible Datenverwaltung
-- **Datenbank**: PostgreSQL für zuverlässige Datenhaltung
+- **Datenbank**: SQLite (Datei-basiert) für zuverlässige Datenhaltung
 - **Hosting**: Deployment auf Vercel für schnelle und sichere Bereitstellung
 
 ## 🚀 Schnellstart
