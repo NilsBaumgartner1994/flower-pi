@@ -95,8 +95,8 @@ services:
   # https://docs.directus.io/self-hosted/docker-guide.html#example-docker-compose
   flower-pi-database:
     image: postgis/postgis:13-3.4
-    # Multi-arch tag; set platform only if your Docker host needs it.
-    # platform: linux/amd64
+    # Multi-arch tag; pin platform for Raspberry Pi hosts.
+    platform: linux/arm64/v8
     restart: always
     volumes:
       # Currently in: rocket-meals/apps/backend/docker-compose.yaml
