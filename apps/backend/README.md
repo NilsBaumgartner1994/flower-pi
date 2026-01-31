@@ -7,6 +7,22 @@ Development: For local development you can use: https://127.0.0.1:3000/rocket-me
 
 # Configuration
 
+## Hostname (MYHOST) für lokale Netzwerkzugriffe
+
+Wenn du den Server im LAN zusätzlich zu `127.0.0.1` über einen Hostnamen erreichen willst, muss
+`MYHOST` auf einen im Netzwerk auflösbaren Namen zeigen (DNS, mDNS/Bonjour oder ein Eintrag in
+`/etc/hosts`). Beispiel zum Prüfen der Namensauflösung:
+
+```bash
+ping raspberry-pi-4-nils
+```
+
+Falls dein Netzwerk mDNS nutzt, funktioniert oft auch:
+
+```bash
+ping raspberry-pi-4-nils.local
+```
+
 ## Whitelist Redirects
 
 - In the Backend at `App Settings` under `Redirect Whitelist` add:
