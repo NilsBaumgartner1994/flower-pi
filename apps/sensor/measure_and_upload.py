@@ -18,7 +18,7 @@ AVERAGE_WINDOW_SECONDS = int(
 )
 
 DIRECTUS_URL = os.getenv("DIRECTUS_URL", "http://flower-pi-directus:8055").rstrip("/")
-DIRECTUS_COLLECTION = os.getenv("DIRECTUS_COLLECTION", "plants_measured_values")
+DIRECTUS_COLLECTION = os.getenv("DIRECTUS_COLLECTION", "sensor_measurements")
 ADMIN_EMAIL = os.getenv("ADMIN_EMAIL", "")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "")
 SENSOR_DEBUG = os.getenv("SENSOR_DEBUG", "false").strip().lower() in {"1", "true", "yes", "on"}
@@ -124,7 +124,11 @@ def main() -> None:
             measurements = build_window_stats(samples)
             payload = {
                 "measured_at": dt.datetime.now(dt.timezone.utc).isoformat(),
-                "moisture_percentage_average": round(measurements["moisture_avg"], 1),
+                "moisture_percentage": round(measurements["moisture_avg"], 1),
+                "voltage_current": round(measurements["voltage_avg"], 3),
+                "voltage_min": round(measurements["voltage_min"], 3),
+                "voltage_max": round(measurements["voltage_max"], 3),
+                "status": "published",
             }
 
             try:

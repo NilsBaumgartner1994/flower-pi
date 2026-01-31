@@ -4,7 +4,7 @@ x-plants-measurements-base: &plants-measurements-base
     - .env
   environment:
     DIRECTUS_URL: "http://flower-pi-directus:8055"
-    DIRECTUS_COLLECTION: "plants_measured_values"
+    DIRECTUS_COLLECTION: "sensor_measurements"
     SENSOR_DEBUG: "${SENSOR_DEBUG:-false}"
     ADMIN_EMAIL: "${ADMIN_EMAIL:-}"
     ADMIN_PASSWORD: "${ADMIN_PASSWORD:-}"
