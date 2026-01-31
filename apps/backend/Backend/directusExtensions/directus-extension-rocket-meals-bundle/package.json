@@ -50,11 +50,6 @@
       },
       {
         "type": "hook",
-        "name": "mails-hook",
-        "source": "src/mails-hook/index.ts"
-      },
-      {
-        "type": "hook",
         "name": "telegram-notifications-hook",
         "source": "src/telegram-notifications-hook/index.ts"
       },

@@ -61,6 +61,16 @@ services:
       service: flower-pi-database
       file: apps/backend/docker-compose.yaml
 
+  flower-pi-database-sync:
+    env_file:
+      - .env
+    depends_on:
+      prepare-data:
+        condition: service_completed_successfully
+    extends:
+      service: flower-pi-database-sync
+      file: apps/backend/docker-compose.yaml
+
   flower-pi-cache:
     extends:
       service: flower-pi-cache

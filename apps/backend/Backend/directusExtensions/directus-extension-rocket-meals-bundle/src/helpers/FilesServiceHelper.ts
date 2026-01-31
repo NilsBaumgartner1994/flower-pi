@@ -5,10 +5,8 @@ import { PrimaryKey } from '@directus/types';
 import { Readable } from 'node:stream';
 import type { Stat } from '@directus/storage';
 import { AssetsService } from './MyServiceClassHelpers';
-import { CreateShareLinkOptionForDirectusFiles, ShareDirectusFileMethod, ShareServiceHelper } from './ShareServiceHelper';
 import { Buffer } from 'node:buffer';
 import { MyDatabaseHelperInterface } from './MyDatabaseHelperInterface';
-import {AccountHelper} from "./AccountHelper";
 
 export enum MyFileTypes {
   PDF = 'application/pdf',
@@ -20,8 +18,7 @@ export enum MyFileTypes {
   TXT = 'text/plain',
 }
 
-export class FilesServiceHelper extends ItemsServiceHelper<DatabaseTypes.DirectusFiles> implements FilesService, ShareDirectusFileMethod {
-
+export class FilesServiceHelper extends ItemsServiceHelper<DatabaseTypes.DirectusFiles> implements FilesService {
   private useAdminAccountability: boolean = false;
 
   constructor(myDatabaseHelper: MyDatabaseHelperInterface, useAdminAccountability: boolean = false) {
@@ -155,16 +152,5 @@ export class FilesServiceHelper extends ItemsServiceHelper<DatabaseTypes.Directu
         reject(error);
       });
     });
-  }
-
-  /**
-   * Create a public share link for a Directus file.
-   *
-   * @param options Options used for creating the share entry
-   * @returns URL of the share link or null if creation failed
-   */
-  createDirectusFilesShareLink(options: CreateShareLinkOptionForDirectusFiles): Promise<string | null> {
-    let shareServiceHelper = new ShareServiceHelper(this.myDatabaseHelper);
-    return shareServiceHelper.createDirectusFilesShareLink(options);
   }
 }

@@ -821,5 +821,29 @@
     ],
     "policy": "edf04ec1-3c5f-4ac7-8c88-b7c1a62ea615",
     "_syncId": "f73e58b0-ec7a-404a-9064-bdf24035cc10"
+  },
+  {
+    "collection": "plants",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "edf04ec1-3c5f-4ac7-8c88-b7c1a62ea615",
+    "_syncId": "a5cff347-ce01-4de1-b50f-59be755d59ae"
+  },
+  {
+    "collection": "sensor_measurements",
+    "action": "read",
+    "permissions": null,
+    "validation": null,
+    "presets": null,
+    "fields": [
+      "*"
+    ],
+    "policy": "edf04ec1-3c5f-4ac7-8c88-b7c1a62ea615",
+    "_syncId": "74c5cba7-a19c-434b-a7e4-8ab3f7cb7a6b"
   }
 ]

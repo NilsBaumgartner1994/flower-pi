@@ -8,10 +8,7 @@ import { ServerInfo } from '../ItemsServiceCreator';
 import { DirectusFilesAssetHelper, DirectusFilesAssetHelperOptions } from '../DirectusFilesAssetHelper';
 
 export enum HtmlTemplatesEnum {
-  BASE_GERMAN = 'base-german',
   BASE_GERMAN_MARKDOWN_CONTENT = 'base-german-markdown-content',
-  CANTEEN_FOOD_FEEDBACK_REPORT = 'canteen-food-feedback-report',
-  APP_FEEDBACKS = 'app-feedbacks',
 }
 
 export class BaseGermanMarkdownTemplateHelper {

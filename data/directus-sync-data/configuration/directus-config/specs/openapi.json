@@ -3,7 +3,7 @@
   "info": {
     "title": "Dynamic API Specification",
     "description": "This is a dynamically generated API specification for all endpoints existing on the current project.",
-    "version": "5b46ea6ddd47a8283622c9ded2329bb06227dd33"
+    "version": "45af9e892df9de502429135ee2f192a9436d3c44"
   },
   "servers": [
     {
@@ -946,784 +946,6 @@
         },
         "tags": [
           "Utilities"
-        ]
-      }
-    },
-    "/items/sensor_measurements": {
-      "post": {
-        "summary": "Create an Item",
-        "description": "Create a new sensor_measurements item.",
-        "tags": [
-          "Items",
-          "ItemsSensorMeasurements"
-        ],
-        "operationId": "createItemsSensorMeasurements",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Meta"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ItemsSensorMeasurements"
-                    }
-                  },
-                  {
-                    "$ref": "#/components/schemas/ItemsSensorMeasurements"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ItemsSensorMeasurements"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      },
-      "get": {
-        "summary": "List Items",
-        "description": "List the sensor_measurements items.",
-        "tags": [
-          "Items",
-          "ItemsSensorMeasurements"
-        ],
-        "operationId": "readItemsSensorMeasurements",
-        "security": [
-          {
-            "Auth": []
-          }
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/Sort"
-          },
-          {
-            "$ref": "#/components/parameters/Filter"
-          },
-          {
-            "$ref": "#/components/parameters/Search"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "$ref": "#/components/schemas/ItemsSensorMeasurements"
-                      }
-                    },
-                    "meta": {
-                      "$ref": "#/components/schemas/x-metadata"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update Multiple Items",
-        "description": "Update multiple sensor_measurements items at the same time.",
-        "tags": [
-          "Items",
-          "ItemsSensorMeasurements"
-        ],
-        "operationId": "updateItemsSensorMeasurements",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/Sort"
-          },
-          {
-            "$ref": "#/components/parameters/Filter"
-          },
-          {
-            "$ref": "#/components/parameters/Search"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ItemsSensorMeasurements"
-                    }
-                  },
-                  {
-                    "$ref": "#/components/schemas/ItemsSensorMeasurements"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ItemsSensorMeasurements"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete Multiple Items",
-        "description": "Delete multiple existing sensor_measurements items.",
-        "tags": [
-          "Items",
-          "ItemsSensorMeasurements"
-        ],
-        "operationId": "deleteItemsSensorMeasurements",
-        "responses": {
-          "200": {
-            "description": "Successful request"
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        },
-        "parameters": []
-      }
-    },
-    "/items/sensor_measurements/{id}": {
-      "get": {
-        "summary": "Retrieve an Item",
-        "description": "Retrieve a single sensor_measurements item by unique identifier.",
-        "tags": [
-          "Items",
-          "ItemsSensorMeasurements"
-        ],
-        "operationId": "readSingleItemsSensorMeasurements",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          },
-          {
-            "$ref": "#/components/parameters/Version"
-          },
-          {
-            "name": "id",
-            "description": "Index of the item.",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "oneOf": [
-                {
-                  "type": "integer",
-                  "description": "Incremental index of the item.",
-                  "example": 1
-                },
-                {
-                  "type": "string",
-                  "description": "Unique identifier of the item.",
-                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
-                }
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/ItemsSensorMeasurements"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update an Item",
-        "description": "Update an existing sensor_measurements item.",
-        "tags": [
-          "Items",
-          "ItemsSensorMeasurements"
-        ],
-        "operationId": "updateSingleItemsSensorMeasurements",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          },
-          {
-            "name": "id",
-            "description": "Index of the item.",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "oneOf": [
-                {
-                  "type": "integer",
-                  "description": "Incremental index of the item.",
-                  "example": 1
-                },
-                {
-                  "type": "string",
-                  "description": "Unique identifier of the item.",
-                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
-                }
-              ]
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "$ref": "#/components/schemas/ItemsSensorMeasurements"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/ItemsSensorMeasurements"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete an Item",
-        "description": "Delete an existing sensor_measurements item.",
-        "tags": [
-          "Items",
-          "ItemsSensorMeasurements"
-        ],
-        "operationId": "deleteSingleItemsSensorMeasurements",
-        "responses": {
-          "200": {
-            "description": "Successful request"
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "Index of the item.",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "oneOf": [
-                {
-                  "type": "integer",
-                  "description": "Incremental index of the item.",
-                  "example": 1
-                },
-                {
-                  "type": "string",
-                  "description": "Unique identifier of the item.",
-                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
-                }
-              ]
-            }
-          }
-        ]
-      }
-    },
-    "/items/plants": {
-      "post": {
-        "summary": "Create an Item",
-        "description": "Create a new plants item.",
-        "tags": [
-          "Items",
-          "ItemsPlants"
-        ],
-        "operationId": "createItemsPlants",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Meta"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ItemsPlants"
-                    }
-                  },
-                  {
-                    "$ref": "#/components/schemas/ItemsPlants"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ItemsPlants"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      },
-      "get": {
-        "summary": "List Items",
-        "description": "List the plants items.",
-        "tags": [
-          "Items",
-          "ItemsPlants"
-        ],
-        "operationId": "readItemsPlants",
-        "security": [
-          {
-            "Auth": []
-          }
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/Sort"
-          },
-          {
-            "$ref": "#/components/parameters/Filter"
-          },
-          {
-            "$ref": "#/components/parameters/Search"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "$ref": "#/components/schemas/ItemsPlants"
-                      }
-                    },
-                    "meta": {
-                      "$ref": "#/components/schemas/x-metadata"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update Multiple Items",
-        "description": "Update multiple plants items at the same time.",
-        "tags": [
-          "Items",
-          "ItemsPlants"
-        ],
-        "operationId": "updateItemsPlants",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/Sort"
-          },
-          {
-            "$ref": "#/components/parameters/Filter"
-          },
-          {
-            "$ref": "#/components/parameters/Search"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "oneOf": [
-                  {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/ItemsPlants"
-                    }
-                  },
-                  {
-                    "$ref": "#/components/schemas/ItemsPlants"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/ItemsPlants"
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete Multiple Items",
-        "description": "Delete multiple existing plants items.",
-        "tags": [
-          "Items",
-          "ItemsPlants"
-        ],
-        "operationId": "deleteItemsPlants",
-        "responses": {
-          "200": {
-            "description": "Successful request"
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        },
-        "parameters": []
-      }
-    },
-    "/items/plants/{id}": {
-      "get": {
-        "summary": "Retrieve an Item",
-        "description": "Retrieve a single plants item by unique identifier.",
-        "tags": [
-          "Items",
-          "ItemsPlants"
-        ],
-        "operationId": "readSingleItemsPlants",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          },
-          {
-            "$ref": "#/components/parameters/Version"
-          },
-          {
-            "name": "id",
-            "description": "Index of the item.",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "oneOf": [
-                {
-                  "type": "integer",
-                  "description": "Incremental index of the item.",
-                  "example": 1
-                },
-                {
-                  "type": "string",
-                  "description": "Unique identifier of the item.",
-                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
-                }
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/ItemsPlants"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update an Item",
-        "description": "Update an existing plants item.",
-        "tags": [
-          "Items",
-          "ItemsPlants"
-        ],
-        "operationId": "updateSingleItemsPlants",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          },
-          {
-            "name": "id",
-            "description": "Index of the item.",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "oneOf": [
-                {
-                  "type": "integer",
-                  "description": "Incremental index of the item.",
-                  "example": 1
-                },
-                {
-                  "type": "string",
-                  "description": "Unique identifier of the item.",
-                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
-                }
-              ]
-            }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "$ref": "#/components/schemas/ItemsPlants"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "object",
-                      "$ref": "#/components/schemas/ItemsPlants"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete an Item",
-        "description": "Delete an existing plants item.",
-        "tags": [
-          "Items",
-          "ItemsPlants"
-        ],
-        "operationId": "deleteSingleItemsPlants",
-        "responses": {
-          "200": {
-            "description": "Successful request"
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFoundError"
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "Index of the item.",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "oneOf": [
-                {
-                  "type": "integer",
-                  "description": "Incremental index of the item.",
-                  "example": 1
-                },
-                {
-                  "type": "string",
-                  "description": "Unique identifier of the item.",
-                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
-                }
-              ]
-            }
-          }
         ]
       }
     },
@@ -5111,6 +4333,510 @@
         ]
       }
     },
+    "/presets": {
+      "get": {
+        "tags": [
+          "Presets"
+        ],
+        "operationId": "getPresets",
+        "summary": "List Presets",
+        "description": "List the presets.",
+        "security": [
+          {
+            "Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Page"
+          },
+          {
+            "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Filter"
+          },
+          {
+            "$ref": "#/components/parameters/Search"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Presets"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/x-metadata"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Presets"
+        ],
+        "operationId": "createPreset",
+        "summary": "Create a Preset",
+        "description": "Create a new preset.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "collection"
+                ],
+                "properties": {
+                  "collection": {
+                    "type": "string",
+                    "description": "What collection this collection preset is used for.",
+                    "example": "articles"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Name for the bookmark. If this is set, the collection preset will be considered to be a bookmark.",
+                    "example": "Highly rated articles"
+                  },
+                  "role": {
+                    "type": "string",
+                    "description": "The unique identifier of a role in the platform. If user is null, this will be used to apply the collection preset or bookmark for all users in the role.",
+                    "example": null
+                  },
+                  "search": {
+                    "type": "string",
+                    "description": "What the user searched for in search/filter in the header bar."
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "key": {
+                          "type": "string",
+                          "example": "aHKLAakdVghzD"
+                        },
+                        "field": {
+                          "type": "string",
+                          "example": "rating"
+                        },
+                        "operator": {
+                          "type": "string",
+                          "example": "gte"
+                        },
+                        "value": {
+                          "type": "integer",
+                          "example": 4.5
+                        }
+                      }
+                    }
+                  },
+                  "layout": {
+                    "type": "string",
+                    "description": "Name of the view type that is used."
+                  },
+                  "layout_query": {
+                    "type": "string",
+                    "description": "Layout query that's saved per layout type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters."
+                  },
+                  "layout_options": {
+                    "type": "string",
+                    "description": "Options of the views. The properties in here are controlled by the layout."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Presets"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Multiple Presets",
+        "description": "Update multiple presets at the same time.",
+        "tags": [
+          "Presets"
+        ],
+        "operationId": "updatePresets",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Filter"
+          },
+          {
+            "$ref": "#/components/parameters/Search"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "keys": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "data": {
+                    "type": "object",
+                    "required": [
+                      "collection"
+                    ],
+                    "properties": {
+                      "collection": {
+                        "type": "string",
+                        "description": "What collection this collection preset is used for.",
+                        "example": "articles"
+                      },
+                      "title": {
+                        "type": "string",
+                        "description": "Name for the bookmark. If this is set, the collection preset will be considered to be a bookmark.",
+                        "example": "Highly rated articles"
+                      },
+                      "role": {
+                        "type": "string",
+                        "description": "The unique identifier of a role in the platform. If user is null, this will be used to apply the collection preset or bookmark for all users in the role.",
+                        "example": null
+                      },
+                      "search": {
+                        "type": "string",
+                        "description": "What the user searched for in search/filter in the header bar."
+                      },
+                      "filters": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "key": {
+                              "type": "string",
+                              "example": "aHKLAakdVghzD"
+                            },
+                            "field": {
+                              "type": "string",
+                              "example": "rating"
+                            },
+                            "operator": {
+                              "type": "string",
+                              "example": "gte"
+                            },
+                            "value": {
+                              "type": "integer",
+                              "example": 4.5
+                            }
+                          }
+                        }
+                      },
+                      "layout": {
+                        "type": "string",
+                        "description": "Name of the view type that is used."
+                      },
+                      "layout_query": {
+                        "type": "string",
+                        "description": "Layout query that's saved per layout type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters."
+                      },
+                      "layout_options": {
+                        "type": "string",
+                        "description": "Options of the views. The properties in here are controlled by the layout."
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Presets"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/x-metadata"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Multiple Presets",
+        "description": "Delete multiple existing presets.",
+        "tags": [
+          "Presets"
+        ],
+        "operationId": "deletePresets",
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      }
+    },
+    "/presets/{id}": {
+      "get": {
+        "tags": [
+          "Presets"
+        ],
+        "operationId": "getPreset",
+        "summary": "Retrieve a Preset",
+        "description": "Retrieve a single preset by unique identifier.",
+        "security": [
+          {
+            "Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          },
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Presets"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Presets"
+        ],
+        "operationId": "updatePreset",
+        "summary": "Update a Preset",
+        "description": "Update an existing preset.",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          },
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "collection"
+                ],
+                "properties": {
+                  "collection": {
+                    "type": "string",
+                    "description": "What collection this collection preset is used for.",
+                    "example": "articles"
+                  },
+                  "title": {
+                    "type": "string",
+                    "description": "Name for the bookmark. If this is set, the collection preset will be considered to be a bookmark.",
+                    "example": "Highly rated articles"
+                  },
+                  "role": {
+                    "type": "integer",
+                    "description": "The unique identifier of a role in the platform. If user is null, this will be used to apply the collection preset or bookmark for all users in the role."
+                  },
+                  "search_query": {
+                    "type": "string",
+                    "description": "What the user searched for in search/filter in the header bar."
+                  },
+                  "filters": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "field": {
+                          "type": "string",
+                          "example": "rating"
+                        },
+                        "operator": {
+                          "type": "string",
+                          "example": "gte"
+                        },
+                        "value": {
+                          "type": "integer",
+                          "example": 4.5
+                        }
+                      }
+                    }
+                  },
+                  "view_type": {
+                    "type": "string",
+                    "description": "Name of the view type that is used. Defaults to tabular."
+                  },
+                  "view_query": {
+                    "type": "string",
+                    "description": "View query that's saved per view type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters."
+                  },
+                  "view_options": {
+                    "type": "string",
+                    "description": "Options of the views. The properties in here are controlled by the layout."
+                  },
+                  "translation": {
+                    "type": "object",
+                    "description": "Key value pair of language-translation. Can be used to translate the bookmark title in multiple languages."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Presets"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Presets"
+        ],
+        "operationId": "deletePreset",
+        "summary": "Delete a Preset",
+        "description": "Delete an existing preset.",
+        "security": [
+          {
+            "Auth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Id"
+          }
+        ]
+      }
+    },
     "/users": {
       "get": {
         "summary": "List Users",
@@ -5681,510 +5407,6 @@
         },
         "tags": [
           "Users"
-        ]
-      }
-    },
-    "/presets": {
-      "get": {
-        "tags": [
-          "Presets"
-        ],
-        "operationId": "getPresets",
-        "summary": "List Presets",
-        "description": "List the presets.",
-        "security": [
-          {
-            "Auth": []
-          }
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/Page"
-          },
-          {
-            "$ref": "#/components/parameters/Sort"
-          },
-          {
-            "$ref": "#/components/parameters/Filter"
-          },
-          {
-            "$ref": "#/components/parameters/Search"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Presets"
-                      }
-                    },
-                    "meta": {
-                      "$ref": "#/components/schemas/x-metadata"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      },
-      "post": {
-        "tags": [
-          "Presets"
-        ],
-        "operationId": "createPreset",
-        "summary": "Create a Preset",
-        "description": "Create a new preset.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "collection"
-                ],
-                "properties": {
-                  "collection": {
-                    "type": "string",
-                    "description": "What collection this collection preset is used for.",
-                    "example": "articles"
-                  },
-                  "title": {
-                    "type": "string",
-                    "description": "Name for the bookmark. If this is set, the collection preset will be considered to be a bookmark.",
-                    "example": "Highly rated articles"
-                  },
-                  "role": {
-                    "type": "string",
-                    "description": "The unique identifier of a role in the platform. If user is null, this will be used to apply the collection preset or bookmark for all users in the role.",
-                    "example": null
-                  },
-                  "search": {
-                    "type": "string",
-                    "description": "What the user searched for in search/filter in the header bar."
-                  },
-                  "filters": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "key": {
-                          "type": "string",
-                          "example": "aHKLAakdVghzD"
-                        },
-                        "field": {
-                          "type": "string",
-                          "example": "rating"
-                        },
-                        "operator": {
-                          "type": "string",
-                          "example": "gte"
-                        },
-                        "value": {
-                          "type": "integer",
-                          "example": 4.5
-                        }
-                      }
-                    }
-                  },
-                  "layout": {
-                    "type": "string",
-                    "description": "Name of the view type that is used."
-                  },
-                  "layout_query": {
-                    "type": "string",
-                    "description": "Layout query that's saved per layout type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters."
-                  },
-                  "layout_options": {
-                    "type": "string",
-                    "description": "Options of the views. The properties in here are controlled by the layout."
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Presets"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      },
-      "patch": {
-        "summary": "Update Multiple Presets",
-        "description": "Update multiple presets at the same time.",
-        "tags": [
-          "Presets"
-        ],
-        "operationId": "updatePresets",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Limit"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          },
-          {
-            "$ref": "#/components/parameters/Offset"
-          },
-          {
-            "$ref": "#/components/parameters/Sort"
-          },
-          {
-            "$ref": "#/components/parameters/Filter"
-          },
-          {
-            "$ref": "#/components/parameters/Search"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "keys": {
-                    "type": "array",
-                    "items": {
-                      "type": "string"
-                    }
-                  },
-                  "data": {
-                    "type": "object",
-                    "required": [
-                      "collection"
-                    ],
-                    "properties": {
-                      "collection": {
-                        "type": "string",
-                        "description": "What collection this collection preset is used for.",
-                        "example": "articles"
-                      },
-                      "title": {
-                        "type": "string",
-                        "description": "Name for the bookmark. If this is set, the collection preset will be considered to be a bookmark.",
-                        "example": "Highly rated articles"
-                      },
-                      "role": {
-                        "type": "string",
-                        "description": "The unique identifier of a role in the platform. If user is null, this will be used to apply the collection preset or bookmark for all users in the role.",
-                        "example": null
-                      },
-                      "search": {
-                        "type": "string",
-                        "description": "What the user searched for in search/filter in the header bar."
-                      },
-                      "filters": {
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "key": {
-                              "type": "string",
-                              "example": "aHKLAakdVghzD"
-                            },
-                            "field": {
-                              "type": "string",
-                              "example": "rating"
-                            },
-                            "operator": {
-                              "type": "string",
-                              "example": "gte"
-                            },
-                            "value": {
-                              "type": "integer",
-                              "example": 4.5
-                            }
-                          }
-                        }
-                      },
-                      "layout": {
-                        "type": "string",
-                        "description": "Name of the view type that is used."
-                      },
-                      "layout_query": {
-                        "type": "string",
-                        "description": "Layout query that's saved per layout type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters."
-                      },
-                      "layout_options": {
-                        "type": "string",
-                        "description": "Options of the views. The properties in here are controlled by the layout."
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "type": "array",
-                      "items": {
-                        "$ref": "#/components/schemas/Presets"
-                      }
-                    },
-                    "meta": {
-                      "$ref": "#/components/schemas/x-metadata"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      },
-      "delete": {
-        "summary": "Delete Multiple Presets",
-        "description": "Delete multiple existing presets.",
-        "tags": [
-          "Presets"
-        ],
-        "operationId": "deletePresets",
-        "responses": {
-          "200": {
-            "description": "Successful request"
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      }
-    },
-    "/presets/{id}": {
-      "get": {
-        "tags": [
-          "Presets"
-        ],
-        "operationId": "getPreset",
-        "summary": "Retrieve a Preset",
-        "description": "Retrieve a single preset by unique identifier.",
-        "security": [
-          {
-            "Auth": []
-          }
-        ],
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Id"
-          },
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Presets"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      },
-      "patch": {
-        "tags": [
-          "Presets"
-        ],
-        "operationId": "updatePreset",
-        "summary": "Update a Preset",
-        "description": "Update an existing preset.",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Id"
-          },
-          {
-            "$ref": "#/components/parameters/Fields"
-          },
-          {
-            "$ref": "#/components/parameters/Meta"
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "required": [
-                  "collection"
-                ],
-                "properties": {
-                  "collection": {
-                    "type": "string",
-                    "description": "What collection this collection preset is used for.",
-                    "example": "articles"
-                  },
-                  "title": {
-                    "type": "string",
-                    "description": "Name for the bookmark. If this is set, the collection preset will be considered to be a bookmark.",
-                    "example": "Highly rated articles"
-                  },
-                  "role": {
-                    "type": "integer",
-                    "description": "The unique identifier of a role in the platform. If user is null, this will be used to apply the collection preset or bookmark for all users in the role."
-                  },
-                  "search_query": {
-                    "type": "string",
-                    "description": "What the user searched for in search/filter in the header bar."
-                  },
-                  "filters": {
-                    "type": "array",
-                    "items": {
-                      "type": "object",
-                      "properties": {
-                        "field": {
-                          "type": "string",
-                          "example": "rating"
-                        },
-                        "operator": {
-                          "type": "string",
-                          "example": "gte"
-                        },
-                        "value": {
-                          "type": "integer",
-                          "example": 4.5
-                        }
-                      }
-                    }
-                  },
-                  "view_type": {
-                    "type": "string",
-                    "description": "Name of the view type that is used. Defaults to tabular."
-                  },
-                  "view_query": {
-                    "type": "string",
-                    "description": "View query that's saved per view type. Controls what data is fetched on load. These follow the same format as the JS SDK parameters."
-                  },
-                  "view_options": {
-                    "type": "string",
-                    "description": "Options of the views. The properties in here are controlled by the layout."
-                  },
-                  "translation": {
-                    "type": "object",
-                    "description": "Key value pair of language-translation. Can be used to translate the bookmark title in multiple languages."
-                  }
-                }
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/Presets"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        }
-      },
-      "delete": {
-        "tags": [
-          "Presets"
-        ],
-        "operationId": "deletePreset",
-        "summary": "Delete a Preset",
-        "description": "Delete an existing preset.",
-        "security": [
-          {
-            "Auth": []
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Successful request"
-          },
-          "401": {
-            "$ref": "#/components/responses/UnauthorizedError"
-          }
-        },
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/Id"
-          }
         ]
       }
     },
@@ -8031,6 +7253,395 @@
         ]
       }
     },
+    "/items/languages": {
+      "post": {
+        "summary": "Create an Item",
+        "description": "Create a new languages item.",
+        "tags": [
+          "Items",
+          "ItemsLanguages"
+        ],
+        "operationId": "createItemsLanguages",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Meta"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ItemsLanguages"
+                    }
+                  },
+                  {
+                    "$ref": "#/components/schemas/ItemsLanguages"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ItemsLanguages"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "get": {
+        "summary": "List Items",
+        "description": "List the languages items.",
+        "tags": [
+          "Items",
+          "ItemsLanguages"
+        ],
+        "operationId": "readItemsLanguages",
+        "security": [
+          {
+            "Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Filter"
+          },
+          {
+            "$ref": "#/components/parameters/Search"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/ItemsLanguages"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/x-metadata"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Multiple Items",
+        "description": "Update multiple languages items at the same time.",
+        "tags": [
+          "Items",
+          "ItemsLanguages"
+        ],
+        "operationId": "updateItemsLanguages",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Filter"
+          },
+          {
+            "$ref": "#/components/parameters/Search"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ItemsLanguages"
+                    }
+                  },
+                  {
+                    "$ref": "#/components/schemas/ItemsLanguages"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ItemsLanguages"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Multiple Items",
+        "description": "Delete multiple existing languages items.",
+        "tags": [
+          "Items",
+          "ItemsLanguages"
+        ],
+        "operationId": "deleteItemsLanguages",
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/items/languages/{id}": {
+      "get": {
+        "summary": "Retrieve an Item",
+        "description": "Retrieve a single languages item by unique identifier.",
+        "tags": [
+          "Items",
+          "ItemsLanguages"
+        ],
+        "operationId": "readSingleItemsLanguages",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Version"
+          },
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ItemsLanguages"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update an Item",
+        "description": "Update an existing languages item.",
+        "tags": [
+          "Items",
+          "ItemsLanguages"
+        ],
+        "operationId": "updateSingleItemsLanguages",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/ItemsLanguages"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ItemsLanguages"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an Item",
+        "description": "Delete an existing languages item.",
+        "tags": [
+          "Items",
+          "ItemsLanguages"
+        ],
+        "operationId": "deleteSingleItemsLanguages",
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
     "/settings": {
       "get": {
         "summary": "Retrieve Settings",
@@ -8678,15 +8289,15 @@
         ]
       }
     },
-    "/items/languages": {
+    "/items/plants": {
       "post": {
         "summary": "Create an Item",
-        "description": "Create a new languages item.",
+        "description": "Create a new plants item.",
         "tags": [
           "Items",
-          "ItemsLanguages"
+          "ItemsPlants"
         ],
-        "operationId": "createItemsLanguages",
+        "operationId": "createItemsPlants",
         "parameters": [
           {
             "$ref": "#/components/parameters/Meta"
@@ -8700,11 +8311,11 @@
                   {
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/ItemsLanguages"
+                      "$ref": "#/components/schemas/ItemsPlants"
                     }
                   },
                   {
-                    "$ref": "#/components/schemas/ItemsLanguages"
+                    "$ref": "#/components/schemas/ItemsPlants"
                   }
                 ]
               }
@@ -8722,7 +8333,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/ItemsLanguages"
+                        "$ref": "#/components/schemas/ItemsPlants"
                       }
                     }
                   }
@@ -8737,12 +8348,12 @@
       },
       "get": {
         "summary": "List Items",
-        "description": "List the languages items.",
+        "description": "List the plants items.",
         "tags": [
           "Items",
-          "ItemsLanguages"
+          "ItemsPlants"
         ],
-        "operationId": "readItemsLanguages",
+        "operationId": "readItemsPlants",
         "security": [
           {
             "Auth": []
@@ -8783,7 +8394,7 @@
                       "type": "array",
                       "items": {
                         "type": "object",
-                        "$ref": "#/components/schemas/ItemsLanguages"
+                        "$ref": "#/components/schemas/ItemsPlants"
                       }
                     },
                     "meta": {
@@ -8801,12 +8412,12 @@
       },
       "patch": {
         "summary": "Update Multiple Items",
-        "description": "Update multiple languages items at the same time.",
+        "description": "Update multiple plants items at the same time.",
         "tags": [
           "Items",
-          "ItemsLanguages"
+          "ItemsPlants"
         ],
-        "operationId": "updateItemsLanguages",
+        "operationId": "updateItemsPlants",
         "parameters": [
           {
             "$ref": "#/components/parameters/Fields"
@@ -8838,11 +8449,11 @@
                   {
                     "type": "array",
                     "items": {
-                      "$ref": "#/components/schemas/ItemsLanguages"
+                      "$ref": "#/components/schemas/ItemsPlants"
                     }
                   },
                   {
-                    "$ref": "#/components/schemas/ItemsLanguages"
+                    "$ref": "#/components/schemas/ItemsPlants"
                   }
                 ]
               }
@@ -8859,7 +8470,7 @@
                     "data": {
                       "type": "array",
                       "items": {
-                        "$ref": "#/components/schemas/ItemsLanguages"
+                        "$ref": "#/components/schemas/ItemsPlants"
                       }
                     }
                   }
@@ -8871,12 +8482,12 @@
       },
       "delete": {
         "summary": "Delete Multiple Items",
-        "description": "Delete multiple existing languages items.",
+        "description": "Delete multiple existing plants items.",
         "tags": [
           "Items",
-          "ItemsLanguages"
+          "ItemsPlants"
         ],
-        "operationId": "deleteItemsLanguages",
+        "operationId": "deleteItemsPlants",
         "responses": {
           "200": {
             "description": "Successful request"
@@ -8888,15 +8499,15 @@
         "parameters": []
       }
     },
-    "/items/languages/{id}": {
+    "/items/plants/{id}": {
       "get": {
         "summary": "Retrieve an Item",
-        "description": "Retrieve a single languages item by unique identifier.",
+        "description": "Retrieve a single plants item by unique identifier.",
         "tags": [
           "Items",
-          "ItemsLanguages"
+          "ItemsPlants"
         ],
-        "operationId": "readSingleItemsLanguages",
+        "operationId": "readSingleItemsPlants",
         "parameters": [
           {
             "$ref": "#/components/parameters/Fields"
@@ -8938,7 +8549,7 @@
                   "properties": {
                     "data": {
                       "type": "object",
-                      "$ref": "#/components/schemas/ItemsLanguages"
+                      "$ref": "#/components/schemas/ItemsPlants"
                     }
                   }
                 }
@@ -8955,12 +8566,12 @@
       },
       "patch": {
         "summary": "Update an Item",
-        "description": "Update an existing languages item.",
+        "description": "Update an existing plants item.",
         "tags": [
           "Items",
-          "ItemsLanguages"
+          "ItemsPlants"
         ],
-        "operationId": "updateSingleItemsLanguages",
+        "operationId": "updateSingleItemsPlants",
         "parameters": [
           {
             "$ref": "#/components/parameters/Fields"
@@ -8994,7 +8605,7 @@
             "application/json": {
               "schema": {
                 "type": "object",
-                "$ref": "#/components/schemas/ItemsLanguages"
+                "$ref": "#/components/schemas/ItemsPlants"
               }
             }
           }
@@ -9009,7 +8620,7 @@
                   "properties": {
                     "data": {
                       "type": "object",
-                      "$ref": "#/components/schemas/ItemsLanguages"
+                      "$ref": "#/components/schemas/ItemsPlants"
                     }
                   }
                 }
@@ -9026,12 +8637,401 @@
       },
       "delete": {
         "summary": "Delete an Item",
-        "description": "Delete an existing languages item.",
+        "description": "Delete an existing plants item.",
         "tags": [
           "Items",
-          "ItemsLanguages"
+          "ItemsPlants"
         ],
-        "operationId": "deleteSingleItemsLanguages",
+        "operationId": "deleteSingleItemsPlants",
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "/items/sensor_measurements": {
+      "post": {
+        "summary": "Create an Item",
+        "description": "Create a new sensor_measurements item.",
+        "tags": [
+          "Items",
+          "ItemsSensorMeasurements"
+        ],
+        "operationId": "createItemsSensorMeasurements",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Meta"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ItemsSensorMeasurements"
+                    }
+                  },
+                  {
+                    "$ref": "#/components/schemas/ItemsSensorMeasurements"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ItemsSensorMeasurements"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "get": {
+        "summary": "List Items",
+        "description": "List the sensor_measurements items.",
+        "tags": [
+          "Items",
+          "ItemsSensorMeasurements"
+        ],
+        "operationId": "readItemsSensorMeasurements",
+        "security": [
+          {
+            "Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Filter"
+          },
+          {
+            "$ref": "#/components/parameters/Search"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/ItemsSensorMeasurements"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/x-metadata"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Multiple Items",
+        "description": "Update multiple sensor_measurements items at the same time.",
+        "tags": [
+          "Items",
+          "ItemsSensorMeasurements"
+        ],
+        "operationId": "updateItemsSensorMeasurements",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Filter"
+          },
+          {
+            "$ref": "#/components/parameters/Search"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ItemsSensorMeasurements"
+                    }
+                  },
+                  {
+                    "$ref": "#/components/schemas/ItemsSensorMeasurements"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ItemsSensorMeasurements"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Multiple Items",
+        "description": "Delete multiple existing sensor_measurements items.",
+        "tags": [
+          "Items",
+          "ItemsSensorMeasurements"
+        ],
+        "operationId": "deleteItemsSensorMeasurements",
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/items/sensor_measurements/{id}": {
+      "get": {
+        "summary": "Retrieve an Item",
+        "description": "Retrieve a single sensor_measurements item by unique identifier.",
+        "tags": [
+          "Items",
+          "ItemsSensorMeasurements"
+        ],
+        "operationId": "readSingleItemsSensorMeasurements",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Version"
+          },
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ItemsSensorMeasurements"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update an Item",
+        "description": "Update an existing sensor_measurements item.",
+        "tags": [
+          "Items",
+          "ItemsSensorMeasurements"
+        ],
+        "operationId": "updateSingleItemsSensorMeasurements",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/ItemsSensorMeasurements"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ItemsSensorMeasurements"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an Item",
+        "description": "Delete an existing sensor_measurements item.",
+        "tags": [
+          "Items",
+          "ItemsSensorMeasurements"
+        ],
+        "operationId": "deleteSingleItemsSensorMeasurements",
         "responses": {
           "200": {
             "description": "Successful request"
@@ -9844,6 +9844,778 @@
           }
         ]
       }
+    },
+    "/items/app_settings": {
+      "post": {
+        "summary": "Create an Item",
+        "description": "Create a new app_settings item.",
+        "tags": [
+          "Items",
+          "ItemsAppSettings"
+        ],
+        "operationId": "createItemsAppSettings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Meta"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ItemsAppSettings"
+                    }
+                  },
+                  {
+                    "$ref": "#/components/schemas/ItemsAppSettings"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ItemsAppSettings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "get": {
+        "summary": "List Items",
+        "description": "List the app_settings items.",
+        "tags": [
+          "Items",
+          "ItemsAppSettings"
+        ],
+        "operationId": "readItemsAppSettings",
+        "security": [
+          {
+            "Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Filter"
+          },
+          {
+            "$ref": "#/components/parameters/Search"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      },
+                      "$ref": "#/components/schemas/ItemsAppSettings"
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/x-metadata"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Multiple Items",
+        "description": "Update multiple app_settings items at the same time.",
+        "tags": [
+          "Items",
+          "ItemsAppSettings"
+        ],
+        "operationId": "updateItemsAppSettings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Filter"
+          },
+          {
+            "$ref": "#/components/parameters/Search"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ItemsAppSettings"
+                    }
+                  },
+                  {
+                    "$ref": "#/components/schemas/ItemsAppSettings"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/ItemsAppSettings"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Multiple Items",
+        "description": "Delete multiple existing app_settings items.",
+        "tags": [
+          "Items",
+          "ItemsAppSettings"
+        ],
+        "operationId": "deleteItemsAppSettings",
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/items/app_settings/{id}": {
+      "get": {
+        "summary": "Retrieve an Item",
+        "description": "Retrieve a single app_settings item by unique identifier.",
+        "tags": [
+          "Items",
+          "ItemsAppSettings"
+        ],
+        "operationId": "readSingleItemsAppSettings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Version"
+          },
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ItemsAppSettings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update an Item",
+        "description": "Update an existing app_settings item.",
+        "tags": [
+          "Items",
+          "ItemsAppSettings"
+        ],
+        "operationId": "updateSingleItemsAppSettings",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/ItemsAppSettings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ItemsAppSettings"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an Item",
+        "description": "Delete an existing app_settings item.",
+        "tags": [
+          "Items",
+          "ItemsAppSettings"
+        ],
+        "operationId": "deleteSingleItemsAppSettings",
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "/items/telegram_notifications": {
+      "post": {
+        "summary": "Create an Item",
+        "description": "Create a new telegram_notifications item.",
+        "tags": [
+          "Items",
+          "ItemsTelegramNotifications"
+        ],
+        "operationId": "createItemsTelegramNotifications",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Meta"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ItemsTelegramNotifications"
+                    }
+                  },
+                  {
+                    "$ref": "#/components/schemas/ItemsTelegramNotifications"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ItemsTelegramNotifications"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "get": {
+        "summary": "List Items",
+        "description": "List the telegram_notifications items.",
+        "tags": [
+          "Items",
+          "ItemsTelegramNotifications"
+        ],
+        "operationId": "readItemsTelegramNotifications",
+        "security": [
+          {
+            "Auth": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Filter"
+          },
+          {
+            "$ref": "#/components/parameters/Search"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "$ref": "#/components/schemas/ItemsTelegramNotifications"
+                      }
+                    },
+                    "meta": {
+                      "$ref": "#/components/schemas/x-metadata"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update Multiple Items",
+        "description": "Update multiple telegram_notifications items at the same time.",
+        "tags": [
+          "Items",
+          "ItemsTelegramNotifications"
+        ],
+        "operationId": "updateItemsTelegramNotifications",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Limit"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Offset"
+          },
+          {
+            "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Filter"
+          },
+          {
+            "$ref": "#/components/parameters/Search"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/ItemsTelegramNotifications"
+                    }
+                  },
+                  {
+                    "$ref": "#/components/schemas/ItemsTelegramNotifications"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ItemsTelegramNotifications"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete Multiple Items",
+        "description": "Delete multiple existing telegram_notifications items.",
+        "tags": [
+          "Items",
+          "ItemsTelegramNotifications"
+        ],
+        "operationId": "deleteItemsTelegramNotifications",
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          }
+        },
+        "parameters": []
+      }
+    },
+    "/items/telegram_notifications/{id}": {
+      "get": {
+        "summary": "Retrieve an Item",
+        "description": "Retrieve a single telegram_notifications item by unique identifier.",
+        "tags": [
+          "Items",
+          "ItemsTelegramNotifications"
+        ],
+        "operationId": "readSingleItemsTelegramNotifications",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "$ref": "#/components/parameters/Version"
+          },
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ItemsTelegramNotifications"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update an Item",
+        "description": "Update an existing telegram_notifications item.",
+        "tags": [
+          "Items",
+          "ItemsTelegramNotifications"
+        ],
+        "operationId": "updateSingleItemsTelegramNotifications",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/Fields"
+          },
+          {
+            "$ref": "#/components/parameters/Meta"
+          },
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "$ref": "#/components/schemas/ItemsTelegramNotifications"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/ItemsTelegramNotifications"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete an Item",
+        "description": "Delete an existing telegram_notifications item.",
+        "tags": [
+          "Items",
+          "ItemsTelegramNotifications"
+        ],
+        "operationId": "deleteSingleItemsTelegramNotifications",
+        "responses": {
+          "200": {
+            "description": "Successful request"
+          },
+          "401": {
+            "$ref": "#/components/responses/UnauthorizedError"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFoundError"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "Index of the item.",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "integer",
+                  "description": "Incremental index of the item.",
+                  "example": 1
+                },
+                {
+                  "type": "string",
+                  "description": "Unique identifier of the item.",
+                  "example": "8cbb43fe-4cdf-4991-8352-c461779cec02"
+                }
+              ]
+            }
+          }
+        ]
+      }
     }
   },
   "tags": [
@@ -9878,14 +10650,6 @@
         "Users",
         "Roles"
       ]
-    },
-    {
-      "name": "ItemsSensorMeasurements",
-      "x-collection": "sensor_measurements"
-    },
-    {
-      "name": "ItemsPlants",
-      "x-collection": "plants"
     },
     {
       "name": "Roles",
@@ -9933,14 +10697,14 @@
       "x-collection": "directus_permissions"
     },
     {
-      "name": "Users",
-      "description": "Users are what gives you access to the data.",
-      "x-collection": "directus_users"
-    },
-    {
       "name": "Presets",
       "description": "Presets hold the preferences of individual users of the platform. This allows Directus to show and maintain custom item listings for users of the app.",
       "x-collection": "directus_presets"
+    },
+    {
+      "name": "Users",
+      "description": "Users are what gives you access to the data.",
+      "x-collection": "directus_users"
     },
     {
       "name": "Webhooks",
@@ -9968,6 +10732,10 @@
       "x-collection": "directus_versions"
     },
     {
+      "name": "ItemsLanguages",
+      "x-collection": "languages"
+    },
+    {
       "name": "Settings",
       "description": "Settings control the way the platform works and acts.",
       "x-collection": "directus_settings"
@@ -9982,8 +10750,12 @@
       "x-collection": "directus_sync_id_map"
     },
     {
-      "name": "ItemsLanguages",
-      "x-collection": "languages"
+      "name": "ItemsPlants",
+      "x-collection": "plants"
+    },
+    {
+      "name": "ItemsSensorMeasurements",
+      "x-collection": "sensor_measurements"
     },
     {
       "name": "ItemsWorkflows",
@@ -9992,6 +10764,14 @@
     {
       "name": "ItemsWorkflowsRuns",
       "x-collection": "workflows_runs"
+    },
+    {
+      "name": "ItemsAppSettings",
+      "x-collection": "app_settings"
+    },
+    {
+      "name": "ItemsTelegramNotifications",
+      "x-collection": "telegram_notifications"
     }
   ],
   "components": {
@@ -10603,158 +11383,6 @@
             "type": "integer"
           }
         }
-      },
-      "ItemsSensorMeasurements": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "nullable": false,
-            "type": "string",
-            "format": "uuid"
-          },
-          "status": {
-            "nullable": false,
-            "type": "string"
-          },
-          "sort": {
-            "nullable": true,
-            "type": "integer"
-          },
-          "user_created": {
-            "nullable": true,
-            "oneOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "$ref": "#/components/schemas/Users"
-              }
-            ]
-          },
-          "date_created": {
-            "nullable": true,
-            "type": "string",
-            "format": "timestamp"
-          },
-          "user_updated": {
-            "nullable": true,
-            "oneOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "$ref": "#/components/schemas/Users"
-              }
-            ]
-          },
-          "date_updated": {
-            "nullable": true,
-            "type": "string",
-            "format": "timestamp"
-          },
-          "data_raw": {
-            "nullable": true,
-            "type": "string"
-          },
-          "voltage_current": {
-            "nullable": true,
-            "type": "number",
-            "format": "float"
-          },
-          "voltage_min": {
-            "nullable": true,
-            "type": "number",
-            "format": "float"
-          },
-          "voltage_max": {
-            "nullable": true,
-            "type": "number",
-            "format": "float"
-          },
-          "moisture_percentage": {
-            "nullable": true,
-            "type": "number",
-            "format": "float"
-          },
-          "plant": {
-            "nullable": true,
-            "oneOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "$ref": "#/components/schemas/ItemsPlants"
-              }
-            ]
-          }
-        },
-        "x-collection": "sensor_measurements",
-        "required": [
-          "id"
-        ]
-      },
-      "ItemsPlants": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "nullable": false,
-            "type": "string",
-            "format": "uuid"
-          },
-          "status": {
-            "nullable": false,
-            "type": "string"
-          },
-          "sort": {
-            "nullable": true,
-            "type": "integer"
-          },
-          "user_created": {
-            "nullable": true,
-            "oneOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "$ref": "#/components/schemas/Users"
-              }
-            ]
-          },
-          "date_created": {
-            "nullable": true,
-            "type": "string",
-            "format": "timestamp"
-          },
-          "user_updated": {
-            "nullable": true,
-            "oneOf": [
-              {
-                "type": "string",
-                "format": "uuid"
-              },
-              {
-                "$ref": "#/components/schemas/Users"
-              }
-            ]
-          },
-          "date_updated": {
-            "nullable": true,
-            "type": "string",
-            "format": "timestamp"
-          },
-          "name": {
-            "nullable": true,
-            "type": "string"
-          }
-        },
-        "x-collection": "plants",
-        "required": [
-          "id"
-        ]
       },
       "Collections": {
         "type": "object",
@@ -11744,6 +12372,31 @@
         },
         "x-collection": "directus_versions"
       },
+      "ItemsLanguages": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "nullable": false,
+            "type": "string"
+          },
+          "direction": {
+            "nullable": true,
+            "type": "string"
+          },
+          "name": {
+            "nullable": true,
+            "type": "string"
+          },
+          "status": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "x-collection": "languages",
+        "required": [
+          "code"
+        ]
+      },
       "Settings": {
         "type": "object",
         "properties": {
@@ -12079,29 +12732,156 @@
           "local_id"
         ]
       },
-      "ItemsLanguages": {
+      "ItemsPlants": {
         "type": "object",
         "properties": {
-          "code": {
-            "nullable": false,
-            "type": "string"
-          },
-          "direction": {
+          "date_created": {
             "nullable": true,
-            "type": "string"
+            "type": "string",
+            "format": "timestamp"
+          },
+          "date_updated": {
+            "nullable": true,
+            "type": "string",
+            "format": "timestamp"
+          },
+          "id": {
+            "nullable": false,
+            "type": "string",
+            "format": "uuid"
           },
           "name": {
             "nullable": true,
             "type": "string"
           },
-          "status": {
+          "sort": {
             "nullable": true,
+            "type": "integer"
+          },
+          "status": {
+            "nullable": false,
             "type": "string"
+          },
+          "user_created": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/Users"
+              }
+            ]
+          },
+          "user_updated": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/Users"
+              }
+            ]
           }
         },
-        "x-collection": "languages",
+        "x-collection": "plants",
         "required": [
-          "code"
+          "id"
+        ]
+      },
+      "ItemsSensorMeasurements": {
+        "type": "object",
+        "properties": {
+          "data_raw": {
+            "nullable": true,
+            "type": "string"
+          },
+          "date_created": {
+            "nullable": true,
+            "type": "string",
+            "format": "timestamp"
+          },
+          "date_updated": {
+            "nullable": true,
+            "type": "string",
+            "format": "timestamp"
+          },
+          "id": {
+            "nullable": false,
+            "type": "string",
+            "format": "uuid"
+          },
+          "moisture_percentage": {
+            "nullable": true,
+            "type": "number",
+            "format": "float"
+          },
+          "plant": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/ItemsPlants"
+              }
+            ]
+          },
+          "sort": {
+            "nullable": true,
+            "type": "integer"
+          },
+          "status": {
+            "nullable": false,
+            "type": "string"
+          },
+          "user_created": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/Users"
+              }
+            ]
+          },
+          "user_updated": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/Users"
+              }
+            ]
+          },
+          "voltage_current": {
+            "nullable": true,
+            "type": "number",
+            "format": "float"
+          },
+          "voltage_max": {
+            "nullable": true,
+            "type": "number",
+            "format": "float"
+          },
+          "voltage_min": {
+            "nullable": true,
+            "type": "number",
+            "format": "float"
+          }
+        },
+        "x-collection": "sensor_measurements",
+        "required": [
+          "id"
         ]
       },
       "ItemsWorkflows": {
@@ -12286,6 +13066,130 @@
         "required": [
           "id",
           "workflow"
+        ]
+      },
+      "ItemsAppSettings": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "nullable": false,
+            "type": "integer"
+          },
+          "status": {
+            "nullable": false,
+            "type": "string"
+          },
+          "user_created": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/Users"
+              }
+            ]
+          },
+          "date_created": {
+            "nullable": true,
+            "type": "string",
+            "format": "timestamp"
+          },
+          "user_updated": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/Users"
+              }
+            ]
+          },
+          "date_updated": {
+            "nullable": true,
+            "type": "string",
+            "format": "timestamp"
+          },
+          "telegram_bot_token": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "x-collection": "app_settings"
+      },
+      "ItemsTelegramNotifications": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "nullable": false,
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "nullable": false,
+            "type": "string"
+          },
+          "sort": {
+            "nullable": true,
+            "type": "integer"
+          },
+          "user_created": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/Users"
+              }
+            ]
+          },
+          "date_created": {
+            "nullable": true,
+            "type": "string",
+            "format": "timestamp"
+          },
+          "user_updated": {
+            "nullable": true,
+            "oneOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "$ref": "#/components/schemas/Users"
+              }
+            ]
+          },
+          "date_updated": {
+            "nullable": true,
+            "type": "string",
+            "format": "timestamp"
+          },
+          "chat_id": {
+            "nullable": true,
+            "type": "string"
+          },
+          "disable_notification": {
+            "nullable": true,
+            "type": "boolean"
+          },
+          "message": {
+            "nullable": true,
+            "type": "string"
+          },
+          "message_thread_id": {
+            "nullable": true,
+            "type": "string"
+          }
+        },
+        "x-collection": "telegram_notifications",
+        "required": [
+          "id"
         ]
       }
     },

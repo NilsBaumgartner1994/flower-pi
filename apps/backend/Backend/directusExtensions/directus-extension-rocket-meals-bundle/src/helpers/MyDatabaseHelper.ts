@@ -1,22 +1,19 @@
-import {ApiContext} from './ApiContext';
+import { ApiContext } from './ApiContext';
 
-import {ItemsServiceHelper} from './ItemsServiceHelper';
-import {CollectionFieldNames, CollectionNames, DatabaseTypes} from 'repo-depkit-common';
+import { ItemsServiceHelper } from './ItemsServiceHelper';
+import { CollectionNames, DatabaseTypes } from 'repo-depkit-common';
 
-import {ServerServiceCreator} from './ItemsServiceCreator';
-import {AppSettingsHelper} from './itemServiceHelpers/AppSettingsHelper';
-import {WorkflowsRunHelper} from './itemServiceHelpers/WorkflowsRunHelper';
-import {FilesServiceHelper} from './FilesServiceHelper';
-import {EventContext, SchemaOverview} from '@directus/types';
-import {ShareServiceHelper} from './ShareServiceHelper';
-import {MyDatabaseHelperInterface} from './MyDatabaseHelperInterface';
-import {EnvVariableHelper} from './EnvVariableHelper';
+import { ServerServiceCreator } from './ItemsServiceCreator';
+import { AppSettingsHelper } from './itemServiceHelpers/AppSettingsHelper';
+import { WorkflowsRunHelper } from './itemServiceHelpers/WorkflowsRunHelper';
+import { FilesServiceHelper } from './FilesServiceHelper';
+import { EventContext, SchemaOverview } from '@directus/types';
+import { MyDatabaseHelperInterface } from './MyDatabaseHelperInterface';
+import { EnvVariableHelper } from './EnvVariableHelper';
 import ms from 'ms';
 import jwt from 'jsonwebtoken';
-import {NanoidHelper} from './NanoidHelper';
-import {DirectusFieldsServiceHelper} from "./DirectusFieldsServiceHelper";
-import {UserHelper} from "./UserHelper";
-import {DevicesServiceHelper} from "./DevicesServiceHelper";
+import { NanoidHelper } from './NanoidHelper';
+import { UserHelper } from './UserHelper';
 
 export type MyEventContext = EventContext;
 
@@ -128,13 +125,8 @@ export class MyDatabaseHelper implements MyDatabaseHelperInterface {
     return new AppSettingsHelper(this.apiContext);
   }
 
-
   getUsersHelper() {
     return new UserHelper(this, CollectionNames.USERS);
-  }
-
-  getShareServiceHelper() {
-    return new ShareServiceHelper(this);
   }
 
   getWorkflowsHelper() {
@@ -149,25 +141,7 @@ export class MyDatabaseHelper implements MyDatabaseHelperInterface {
     return new ItemsServiceHelper<T>(this, collectionName);
   }
 
-  async sendMail(mail: Partial<DatabaseTypes.Mails>) {
-    let mailsHelper = this.getMailsHelper();
-    return await mailsHelper.createOne(mail);
-  }
-
-  getMailsHelper() {
-    return new ItemsServiceHelper<DatabaseTypes.Mails>(this, CollectionNames.MAILS);
-  }
-
-  getMailsFilesHelper() {
-    return new ItemsServiceHelper<DatabaseTypes.MailsFiles>(this, CollectionNames.MAILS_FILES);
-  }
-
   getFilesHelper() {
     return new FilesServiceHelper(this);
   }
-
-  getFieldsServiceHelper() {
-    return new DirectusFieldsServiceHelper(this);
-  }
-
 }

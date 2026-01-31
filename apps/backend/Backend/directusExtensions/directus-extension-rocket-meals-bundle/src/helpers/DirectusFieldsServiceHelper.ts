@@ -1,9 +1,8 @@
-import {FieldsService} from './MyServiceClassHelpers';
-import {MyDatabaseHelperInterface} from './MyDatabaseHelperInterface';
-import {CollectionFieldNames, CollectionNames, DatabaseTypes} from 'repo-depkit-common';
+import { FieldsService } from './MyServiceClassHelpers';
+import { MyDatabaseHelperInterface } from './MyDatabaseHelperInterface';
+import { CollectionNames } from 'repo-depkit-common';
 
 export class DirectusFieldsServiceHelper {
-
   private myDatabaseHelper: MyDatabaseHelperInterface;
 
   constructor(myDatabaseHelper: MyDatabaseHelperInterface) {
@@ -22,11 +21,10 @@ export class DirectusFieldsServiceHelper {
     });
   }
 
-  public async getFieldsForCollection(collectionName: CollectionNames){
-    const fieldsService =  await this.getFieldsService();
+  public async getFieldsForCollection(collectionName: CollectionNames) {
+    const fieldsService = await this.getFieldsService();
     return await fieldsService.readAll(collectionName);
   }
-
 
   /**
    * {
@@ -82,7 +80,7 @@ export class DirectusFieldsServiceHelper {
    *   }
    * }
    */
-  public async getFieldForCollectionByFieldName(collectionName: CollectionNames, fieldName: string){
+  public async getFieldForCollectionByFieldName(collectionName: CollectionNames, fieldName: string) {
     const fields = await this.getFieldsForCollection(collectionName);
     return fields.find(field => field.field === fieldName);
   }
@@ -91,5 +89,4 @@ export class DirectusFieldsServiceHelper {
     const imageFieldMeta = await this.getFieldForCollectionByFieldName(collectionName, fieldName);
     return imageFieldMeta?.meta?.options?.folder;
   }
-
 }
