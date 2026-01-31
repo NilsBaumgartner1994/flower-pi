@@ -48,7 +48,7 @@
   "schema": {
     "name": "direction",
     "table": "languages",
-    "data_type": "character varying",
+    "data_type": "varchar",
     "default_value": "ltr",
     "max_length": 255,
     "numeric_precision": null,

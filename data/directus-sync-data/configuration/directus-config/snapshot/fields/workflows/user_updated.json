@@ -1,7 +1,7 @@
 {
   "collection": "workflows",
   "field": "user_updated",
-  "type": "uuid",
+  "type": "string",
   "meta": {
     "collection": "workflows",
     "conditions": null,
@@ -29,9 +29,9 @@
   "schema": {
     "name": "user_updated",
     "table": "workflows",
-    "data_type": "uuid",
+    "data_type": "char",
     "default_value": null,
-    "max_length": null,
+    "max_length": 36,
     "numeric_precision": null,
     "numeric_scale": null,
     "is_nullable": true,

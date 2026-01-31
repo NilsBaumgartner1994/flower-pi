@@ -1,35 +1,31 @@
 {
-  "collection": "sensor_measurements",
-  "field": "date_created",
-  "type": "dateTime",
+  "collection": "plants",
+  "field": "moisture_percentage_tolerance",
+  "type": "float",
   "meta": {
-    "collection": "sensor_measurements",
+    "collection": "plants",
     "conditions": null,
-    "display": "datetime",
-    "display_options": {
-      "relative": true
-    },
-    "field": "date_created",
+    "display": null,
+    "display_options": null,
+    "field": "moisture_percentage_tolerance",
     "group": null,
-    "hidden": true,
-    "interface": "datetime",
+    "hidden": false,
+    "interface": "input",
     "note": null,
     "options": null,
-    "readonly": true,
+    "readonly": false,
     "required": false,
-    "sort": 5,
-    "special": [
-      "date-created"
-    ],
+    "sort": 9,
+    "special": null,
     "translations": null,
     "validation": null,
     "validation_message": null,
-    "width": "half"
+    "width": "full"
   },
   "schema": {
-    "name": "date_created",
-    "table": "sensor_measurements",
-    "data_type": "datetime",
+    "name": "moisture_percentage_tolerance",
+    "table": "plants",
+    "data_type": "float",
     "default_value": null,
     "max_length": null,
     "numeric_precision": null,

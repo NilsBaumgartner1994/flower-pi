@@ -1,7 +1,7 @@
 {
   "collection": "plants",
   "field": "user_created",
-  "type": "uuid",
+  "type": "string",
   "meta": {
     "collection": "plants",
     "conditions": null,
@@ -29,9 +29,9 @@
   "schema": {
     "name": "user_created",
     "table": "plants",
-    "data_type": "uuid",
+    "data_type": "char",
     "default_value": null,
-    "max_length": null,
+    "max_length": 36,
     "numeric_precision": null,
     "numeric_scale": null,
     "is_nullable": true,

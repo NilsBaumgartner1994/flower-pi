@@ -1,7 +1,7 @@
 {
   "collection": "sensor_measurements",
   "field": "date_updated",
-  "type": "timestamp",
+  "type": "dateTime",
   "meta": {
     "collection": "sensor_measurements",
     "conditions": null,
@@ -29,7 +29,7 @@
   "schema": {
     "name": "date_updated",
     "table": "sensor_measurements",
-    "data_type": "timestamp with time zone",
+    "data_type": "datetime",
     "default_value": null,
     "max_length": null,
     "numeric_precision": null,

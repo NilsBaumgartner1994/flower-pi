@@ -1,7 +1,7 @@
 {
   "collection": "app_settings",
   "field": "date_created",
-  "type": "timestamp",
+  "type": "dateTime",
   "meta": {
     "collection": "app_settings",
     "conditions": null,
@@ -29,7 +29,7 @@
   "schema": {
     "name": "date_created",
     "table": "app_settings",
-    "data_type": "timestamp with time zone",
+    "data_type": "datetime",
     "default_value": null,
     "max_length": null,
     "numeric_precision": null,

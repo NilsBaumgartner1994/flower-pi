@@ -1,7 +1,7 @@
 {
   "collection": "workflows",
   "field": "date_updated",
-  "type": "timestamp",
+  "type": "dateTime",
   "meta": {
     "collection": "workflows",
     "conditions": null,
@@ -29,7 +29,7 @@
   "schema": {
     "name": "date_updated",
     "table": "workflows",
-    "data_type": "timestamp with time zone",
+    "data_type": "datetime",
     "default_value": null,
     "max_length": null,
     "numeric_precision": null,

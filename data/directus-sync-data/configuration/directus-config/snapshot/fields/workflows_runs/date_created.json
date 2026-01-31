@@ -1,7 +1,7 @@
 {
   "collection": "workflows_runs",
   "field": "date_created",
-  "type": "timestamp",
+  "type": "dateTime",
   "meta": {
     "collection": "workflows_runs",
     "conditions": null,
@@ -29,7 +29,7 @@
   "schema": {
     "name": "date_created",
     "table": "workflows_runs",
-    "data_type": "timestamp with time zone",
+    "data_type": "datetime",
     "default_value": null,
     "max_length": null,
     "numeric_precision": null,

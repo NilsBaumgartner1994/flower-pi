@@ -1,7 +1,7 @@
 {
   "collection": "sensor_measurements",
   "field": "plant",
-  "type": "uuid",
+  "type": "string",
   "meta": {
     "collection": "sensor_measurements",
     "conditions": null,
@@ -29,9 +29,9 @@
   "schema": {
     "name": "plant",
     "table": "sensor_measurements",
-    "data_type": "uuid",
+    "data_type": "char",
     "default_value": null,
-    "max_length": null,
+    "max_length": 36,
     "numeric_precision": null,
     "numeric_scale": null,
     "is_nullable": true,

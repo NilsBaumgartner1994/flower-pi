@@ -68,7 +68,7 @@
   "schema": {
     "name": "status",
     "table": "workflows_runs",
-    "data_type": "character varying",
+    "data_type": "varchar",
     "default_value": "published",
     "max_length": 255,
     "numeric_precision": null,

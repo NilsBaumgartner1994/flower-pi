@@ -27,7 +27,7 @@
   "schema": {
     "name": "data_raw",
     "table": "sensor_measurements",
-    "data_type": "character varying",
+    "data_type": "varchar",
     "default_value": null,
     "max_length": 255,
     "numeric_precision": null,

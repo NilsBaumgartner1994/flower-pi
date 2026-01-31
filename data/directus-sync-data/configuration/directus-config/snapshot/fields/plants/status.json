@@ -68,7 +68,7 @@
   "schema": {
     "name": "status",
     "table": "plants",
-    "data_type": "character varying",
+    "data_type": "varchar",
     "default_value": "draft",
     "max_length": 255,
     "numeric_precision": null,

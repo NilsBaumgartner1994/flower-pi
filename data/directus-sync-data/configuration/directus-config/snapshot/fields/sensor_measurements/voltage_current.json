@@ -25,10 +25,10 @@
   "schema": {
     "name": "voltage_current",
     "table": "sensor_measurements",
-    "data_type": "real",
+    "data_type": "float",
     "default_value": null,
     "max_length": null,
-    "numeric_precision": 24,
+    "numeric_precision": null,
     "numeric_scale": null,
     "is_nullable": true,
     "is_unique": false,

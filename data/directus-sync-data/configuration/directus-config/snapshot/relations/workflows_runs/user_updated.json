@@ -18,7 +18,7 @@
     "column": "user_updated",
     "foreign_key_table": "directus_users",
     "foreign_key_column": "id",
-    "constraint_name": "workflows_runs_user_updated_foreign",
+    "constraint_name": null,
     "on_update": "NO ACTION",
     "on_delete": "SET NULL"
   }
