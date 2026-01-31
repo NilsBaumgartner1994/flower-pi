@@ -30,9 +30,6 @@ apps/screenshotGenerator/.yarn/
 apps/screenshotGenerator/.yarnrc.yml
 secrets/
 
-# Ignore built Directus extension
-apps/backend/Backend/directusExtensions/directus-extension-rocket-meals-bundle/dist/
-
 # Virtual environment folder
 **/venv/
 apps/backend/Backend/directusExtensions/directus-extension-rocket-meals-bundle/test-artifacts
