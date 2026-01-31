@@ -2,8 +2,6 @@ services:
   traefik:
     image: "traefik:v3.0"
     container_name: "traefik"
-    environment:
-      DOCKER_API_VERSION: "${DOCKER_API_VERSION:-1.53}"
     command:
       #- "--log.level=DEBUG"
       - "--api.insecure=true"
