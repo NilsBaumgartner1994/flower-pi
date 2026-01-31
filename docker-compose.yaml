@@ -39,6 +39,9 @@ services:
     extends:
       service: traefik
       file: apps/proxy/docker-compose.yaml
+    depends_on:
+      prepare-data:
+        condition: service_completed_successfully
 
   flower-pi-directus:
     depends_on:
