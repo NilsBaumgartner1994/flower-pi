@@ -1,13 +1,15 @@
+x-plants-measurements-env: &plants-measurements-env
+  DIRECTUS_URL: "http://flower-pi-directus:8055"
+  DIRECTUS_COLLECTION: "sensor_measurements"
+  SENSOR_DEBUG: "${SENSOR_DEBUG:-false}"
+  ADMIN_EMAIL: "${ADMIN_EMAIL:-}"
+  ADMIN_PASSWORD: "${ADMIN_PASSWORD:-}"
+
 x-plants-measurements-base: &plants-measurements-base
   build: ./apps/sensor
   env_file:
     - .env
-  environment:
-    DIRECTUS_URL: "http://flower-pi-directus:8055"
-    DIRECTUS_COLLECTION: "sensor_measurements"
-    SENSOR_DEBUG: "${SENSOR_DEBUG:-false}"
-    ADMIN_EMAIL: "${ADMIN_EMAIL:-}"
-    ADMIN_PASSWORD: "${ADMIN_PASSWORD:-}"
+  environment: *plants-measurements-env
   depends_on:
     flower-pi-directus:
       condition: service_started
@@ -34,6 +36,12 @@ services:
       - sensor-hw
     devices:
       - /dev/i2c-1:/dev/i2c-1
+    environment:
+      <<: *plants-measurements-env
+      BLINKA_FORCEBOARD: "RASPBERRY_PI_4"
+      BLINKA_FORCECHIP: "BCM2XXX"
+    volumes:
+      - /sys/firmware/devicetree/base:/sys/firmware/devicetree/base:ro
 
   traefik:
     extends:
@@ -42,6 +50,11 @@ services:
     depends_on:
       prepare-data:
         condition: service_completed_successfully
+
+  traefik-ping:
+    extends:
+      service: traefik-ping
+      file: apps/proxy/docker-compose.yaml
 
   flower-pi-directus:
     depends_on:
