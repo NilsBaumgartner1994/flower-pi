@@ -42,7 +42,7 @@ export default MyDefineHook.defineHookWithAllTablesExisting(HOOK_NAME, async ({ 
     }
 
     const telegramPayload: TelegramSendMessagePayload = {
-      chat_id: chatId,
+      chat_ids: [chatId],
       text: message,
       parse_mode: notification?.parse_mode ?? payloadNotification?.parse_mode ?? undefined,
       disable_notification:

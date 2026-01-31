@@ -25,7 +25,6 @@ apps/frontend/app/eas.json
 # Ignore all android generated files
 apps/frontend/app/android
 
-apps/screenshotGenerator/dist/
 apps/screenshotGenerator/.yarn/
 apps/screenshotGenerator/.yarnrc.yml
 secrets/
