@@ -47,25 +47,10 @@ services:
     depends_on:
       prepare-data:
         condition: service_completed_successfully
-      flower-pi-database:
-        condition: service_healthy
       flower-pi-cache:
         condition: service_started
     extends:
       service: flower-pi-directus
-      file: apps/backend/docker-compose.yaml
-
-  flower-pi-database:
-    depends_on:
-      prepare-data:
-        condition: service_completed_successfully
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U directus"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    extends:
-      service: flower-pi-database
       file: apps/backend/docker-compose.yaml
 
   flower-pi-database-sync:
