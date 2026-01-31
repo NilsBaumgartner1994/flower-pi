@@ -15,6 +15,7 @@ type Plant = {
   id?: string | number;
   name?: string | null;
   moisture_percentage_dry?: number | null;
+  moisture_percentage_current?: number | null;
   moisture_percentage_tolerance?: number | null;
 };
 
@@ -56,32 +57,68 @@ export default MyDefineHook.defineHookWithAllTablesExisting(HOOK_NAME, async ({ 
       return;
     }
 
-    const plantId = ItemsServiceHelper.getPrimaryKeyFromItemOrString(measurement.plant ?? undefined);
-    if (!plantId) {
-      console.warn('Plant moisture hook skipped: missing plant reference on measurement.');
-      return;
-    }
-
     const plantService = new ItemsServiceHelper<Plant>(myDatabaseHelper, PLANTS_COLLECTION);
     let plant: Plant | undefined;
     try {
-      plant = await plantService.readOne(plantId, {
-        fields: ['id', 'name', 'moisture_percentage_dry', 'moisture_percentage_tolerance'],
-      });
+      const plants = await plantService.findItems(
+        {},
+        {
+          limit: 1,
+          fields: [
+            'id',
+            'name',
+            'moisture_percentage_dry',
+            'moisture_percentage_current',
+            'moisture_percentage_tolerance',
+          ],
+        }
+      );
+      plant = plants[0];
     } catch (error) {
-      console.warn(`Plant moisture hook skipped: plant ${plantId} not found.`, error);
+      console.warn('Plant moisture hook skipped: failed to load first plant.', error);
+      return;
+    }
+
+    if (!plant) {
+      console.warn('Plant moisture hook skipped: no plant found.');
       return;
     }
 
     const basePercentage = plant.moisture_percentage_dry;
-    if (basePercentage === null || basePercentage === undefined || Number.isNaN(basePercentage)) {
+    const toleranceValue = plant.moisture_percentage_tolerance;
+    const hasBase = basePercentage !== null && basePercentage !== undefined && !Number.isNaN(basePercentage);
+    const hasTolerance = toleranceValue !== null && toleranceValue !== undefined && !Number.isNaN(toleranceValue);
+
+    if (!hasBase && !hasTolerance) {
       return;
     }
 
-    const tolerance = plant.moisture_percentage_tolerance ?? 0;
-    const threshold = basePercentage - tolerance;
+    const normalizedBase = hasBase ? basePercentage : 0;
+    const tolerance = hasTolerance ? toleranceValue : 0;
+    const threshold = normalizedBase - tolerance;
+
+    const plantId = plant.id;
+    if (!plantId) {
+      return;
+    }
+
+    try {
+      await plantService.updateOne(plantId, { moisture_percentage_current: moistureValue });
+    } catch (error) {
+      console.warn(`Plant moisture hook: failed to update moisture current for plant ${plantId}.`, error);
+    }
 
     if (moistureValue >= threshold) {
+      return;
+    }
+
+    const previousMoisture = plant.moisture_percentage_current;
+    const wasBelowThreshold =
+      previousMoisture !== null &&
+      previousMoisture !== undefined &&
+      !Number.isNaN(previousMoisture) &&
+      previousMoisture < threshold;
+    if (wasBelowThreshold) {
       return;
     }
 
@@ -95,7 +132,7 @@ export default MyDefineHook.defineHookWithAllTablesExisting(HOOK_NAME, async ({ 
     const moistureText = moistureValue.toFixed(2);
     const thresholdText = threshold.toFixed(2);
     const toleranceText = tolerance.toFixed(2);
-    const baseText = basePercentage.toFixed(2);
+    const baseText = normalizedBase.toFixed(2);
     const message = `🚨 ${plantName} ist zu trocken.\nMessung: ${moistureText}% (Schwelle ${baseText}% - Toleranz ${toleranceText}% = ${thresholdText}%).`;
 
     try {
