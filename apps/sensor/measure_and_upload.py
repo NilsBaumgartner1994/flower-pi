@@ -10,8 +10,6 @@ import random
 
 import requests
 
-print("Starting sensor measurement script...")
-
 V_DRY = float(os.getenv("SENSOR_VOLTAGE_DRY", "2.80"))
 V_WET = float(os.getenv("SENSOR_VOLTAGE_WET", "1.20"))
 SAMPLE_INTERVAL_SECONDS = float(os.getenv("SENSOR_SAMPLE_INTERVAL_SECONDS", "5"))
@@ -32,8 +30,24 @@ DIRECTUS_VERIFY_TLS = os.getenv("DIRECTUS_VERIFY_TLS", "false").strip().lower() 
 }
 SENSOR_DEBUG = os.getenv("SENSOR_DEBUG", "false").strip().lower() in {"1", "true", "yes", "on"}
 
+# Token and timing state
 _DIRECTUS_TOKEN: Optional[str] = None
 _DIRECTUS_TOKEN_EXPIRES_AT: Optional[float] = None
+# Zeitpunkt, an dem das Token angefragt/erhalten wurde. Wir erneuern das Token spätestens alle 30 Minuten.
+_DIRECTUS_TOKEN_ACQUIRED_AT: Optional[float] = None
+
+
+def log(message: str, *args, **kwargs) -> None:
+    """Loggt eine Nachricht mit der aktuellen lokalen Zeit vorangestellt.
+
+    Beispiel-Format: [2026-02-01T15:04:05+01:00] Nachricht
+    """
+    now = dt.datetime.now().astimezone().isoformat(timespec="seconds")
+    print(f"[{now}] {message}", *args, **kwargs)
+
+
+# Ersetze die statische Start-Print-Ausgabe durch log
+log("Starting sensor measurement script...")
 
 
 def moisture_percent(voltage: float, v_dry: float, v_wet: float) -> float:
@@ -81,16 +95,30 @@ def login_directus() -> str:
     if isinstance(expires, (int, float)):
         global _DIRECTUS_TOKEN_EXPIRES_AT
         _DIRECTUS_TOKEN_EXPIRES_AT = time.time() + float(expires) - 30
+    # Set the acquisition time so we can force refresh after a max age (30 minutes)
+    global _DIRECTUS_TOKEN_ACQUIRED_AT
+    _DIRECTUS_TOKEN_ACQUIRED_AT = time.time()
     return token
 
 
 def get_directus_token() -> str:
     global _DIRECTUS_TOKEN
+    # Wenn wir bereits ein Token haben, prüfen wir auf Ablaufbedingungen.
     if _DIRECTUS_TOKEN:
-        if _DIRECTUS_TOKEN_EXPIRES_AT is None:
+        now = time.time()
+        # 1) Falls der Server eine Ablaufzeit zurückgegeben hat und sie erreicht ist, erneuern.
+        if _DIRECTUS_TOKEN_EXPIRES_AT is not None and now >= _DIRECTUS_TOKEN_EXPIRES_AT:
+            log("Directus token abgelaufen laut Server. Erneuere Token.")
+            _DIRECTUS_TOKEN = login_directus()
             return _DIRECTUS_TOKEN
-        if time.time() < _DIRECTUS_TOKEN_EXPIRES_AT:
+        # 2) Falls das Token älter oder gleich 30 Minuten ist, erneuern wir proaktiv.
+        if _DIRECTUS_TOKEN_ACQUIRED_AT is not None and (now - _DIRECTUS_TOKEN_ACQUIRED_AT) >= 30 * 60:
+            log("Directus token ist 30 Minuten alt. Erneuere Token proaktiv.")
+            _DIRECTUS_TOKEN = login_directus()
             return _DIRECTUS_TOKEN
+        # Sonst: gültiges Token verwenden
+        return _DIRECTUS_TOKEN
+    # Kein Token vorhanden -> neu einloggen
     _DIRECTUS_TOKEN = login_directus()
     return _DIRECTUS_TOKEN
 
@@ -141,13 +169,13 @@ def main() -> None:
 
             try:
                 upload_measurement(payload)
-                print(f"Uploaded measurement: {payload}")
+                log(f"Uploaded measurement: {payload}")
             except Exception as exc:
-                print(f"Failed to upload measurement: {exc}. Payload: {payload}")
+                log(f"Failed to upload measurement: {exc}. Payload: {payload}")
             samples.clear()
             window_started_at = time.time()
 
-        print(f"Sleep for {SAMPLE_INTERVAL_SECONDS} seconds...")
+        log(f"Sleep for {SAMPLE_INTERVAL_SECONDS} seconds...")
         time.sleep(SAMPLE_INTERVAL_SECONDS)
 
 
